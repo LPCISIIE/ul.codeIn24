@@ -14,4 +14,14 @@ class Account extends Model
         'username',
         'token'
     ];
+
+    public function rooms()
+    {
+        return $this->belongsToMany('App\Model\Room')->withPivot('dj');
+    }
+
+    public function roomMusic()
+    {
+        return $this->hasMany('App\Model\AccountMusicRoom');
+    }
 }
