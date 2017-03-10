@@ -11,10 +11,7 @@ class Room extends Model
 
     public $timestamps = false;
 
-    protected $fillable = [
-        'name',
-        'idMusic'
-    ];
+    protected $fillable = ['name'];
 
     public function accounts()
     {
@@ -26,8 +23,12 @@ class Room extends Model
         return $this->hasMany('App\Model\AccountMusicRoom');
     }
 
-    public function currentMusic()
-    {
+   public function music() {
+       return $this->belongsTo('App\Model\Music');
+   }
 
-    }
+   public function dj() {
+       return $this->belongsTo('App\Model\Account');
+   }
+
 }
