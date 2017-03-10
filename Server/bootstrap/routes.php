@@ -24,3 +24,4 @@ $app->get('/users/me', 'AuthController:me')
     ->setName('users.me');
 
 $app->post('/rooms/{id}/accounts', 'RoomAccountController:post')->setName('post_room_account');
+$app->put('/rooms/{id}/accounts', 'RoomAccountController:put')->setName('put_room_account');

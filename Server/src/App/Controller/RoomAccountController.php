@@ -62,6 +62,49 @@ class RoomAccountController extends Controller
         return $this->validationErrors($response);
     }
 
+    public function put(Request $request, Response $response, $roomId)
+    {
+        $room = Room::find($roomId);
+
+        if (null === $room) {
+            throw $this->notFoundException($request, $response);
+        }
+
+        if (!$request->getParam('token')) {
+            return $response->withStatus(401);
+        }
+
+        $account = Account::where('token', $request->getParam('token'))->first();
+
+        if (null === $account) {
+            throw $this->notFoundException($request, $response);
+        }
+
+        $this->validator->validate($request, [
+            'username' => [
+                'rules' => V::notBlank(),
+                'messages' => [
+                    'notBlank' => 'Veuillez choisir un pseudo'
+                ]
+            ]
+        ]);
+
+        if ($this->validator->isValid()) {
+            $account->username = $request->getParam('username');
+            $account->save();
+
+            if ($request->getParam('dj')) {
+                $account->rooms()->updateExistingPivot($roomId, [
+                    'dj' => $request->getParam('dj')
+                ]);
+            }
+
+            return $this->noContent($response);
+        }
+
+        return $this->validationErrors($response);
+    }
+
     private function generateToken($accountName)
     {
         $payload = [
