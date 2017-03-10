@@ -14,11 +14,13 @@ export default class RoomController {
     this.newAccount = {
       username: ''
     }
+    this.dj = false
 
     this.token = this.store.getItem('token')
     if (this.token) {
       this.RoomAccount.get({ room_id: this.$stateParams.id, token: this.token }, account => {
         this.account = account
+        this.dj = !!account.pivot.dj
       })
     }
 
@@ -44,8 +46,11 @@ export default class RoomController {
     this.RoomAccount.update({
       room_id: this.$stateParams.id
     }, {
+      token: this.token,
       username: 'username',
       dj: true
+    }, () => {
+      this.dj = true
     })
   }
 
