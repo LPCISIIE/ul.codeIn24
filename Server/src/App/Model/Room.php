@@ -27,4 +27,8 @@ class Room extends Model
        return $this->belongsTo('App\Model\Music');
    }
 
+   public function dj() {
+       return $this->belongsTo('App\Model\Account');
+   }
+
 }
