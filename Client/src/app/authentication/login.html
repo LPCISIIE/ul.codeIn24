@@ -1,0 +1,17 @@
+<div class="ui container">
+  <h1 class="ui center aligned header">Sign in</h1>
+  <form class="ui form error">
+    <div class="field" field-error="Login.errors.auth">
+      <label for="username">Username</label>
+      <input type="text" id="username" ng-model="Login.user.username">
+    </div>
+
+    <div class="field" field-error="Login.errors.auth">
+      <label for="password">Password</label>
+      <input type="password" id="password" ng-model="Login.user.password">
+    </div>
+    <field-errors errors="Login.errors.auth"></field-errors>
+
+    <input type="submit" class="ui teal circular button" value="Login" ng-click="Login.submit()">
+  </form>
+</div>

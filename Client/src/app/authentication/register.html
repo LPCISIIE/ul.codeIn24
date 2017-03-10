@@ -1,0 +1,30 @@
+<div class="ui container">
+  <h1 class="ui center aligned header">Sign up</h1>
+  <form class="ui form error">
+    <div class="field" field-error="Register.errors.username">
+      <label for="username">Username</label>
+      <input type="text" id="username" ng-model="Register.user.username">
+    </div>
+    <field-errors errors="Register.errors.username"></field-errors>
+
+    <div class="field" field-error="Register.errors.email">
+      <label for="email">Email</label>
+      <input type="text" id="email" ng-model="Register.user.email">
+    </div>
+    <field-errors errors="Register.errors.email"></field-errors>
+
+    <div class="field" field-error="Register.errors.password">
+      <label for="password">Password</label>
+      <input type="password" id="password" ng-model="Register.user.password">
+    </div>
+    <field-errors errors="Register.errors.password"></field-errors>
+
+    <div class="field" field-error="Register.errors.password_confirm">
+      <label for="password-confirm">Confirm password</label>
+      <input type="password" id="password-confirm" ng-model="Register.user.password_confirm">
+    </div>
+    <field-errors errors="Register.errors.password_confirm"></field-errors>
+
+    <input type="submit" class="ui teal circular button" value="Register" ng-click="Register.submit()">
+  </form>
+</div>

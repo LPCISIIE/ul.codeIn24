@@ -1,0 +1,9 @@
+{
+  "name": "angular-webpack",
+  "license": "MIT",
+  "private": true,
+  "dependencies": {
+    "jquery": "^3.1.1",
+    "semantic": "^2.2.7"
+  }
+}
