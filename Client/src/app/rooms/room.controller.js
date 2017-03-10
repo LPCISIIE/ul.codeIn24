@@ -36,6 +36,7 @@ export default class RoomController {
   createAccount () {
     this.RoomAccount.save({ room_id: this.$stateParams.id }, this.newAccount, account => {
       this.account = account
+      this.token = account.token
       this.store.setItem('token', account.token)
     }, response => {
       this.errors = response.data
