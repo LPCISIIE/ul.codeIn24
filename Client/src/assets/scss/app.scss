@@ -68,12 +68,12 @@ body {
 #miniLecteur{
   #buttonMute{
     background-size: 100%;
-    background-color: red;
+    background-color: green;
     width: 30px;
     height: 30px;
     border: none;
     &.mute{
-      background-color: green;
+      background-color: red;
     }
   }
 }
