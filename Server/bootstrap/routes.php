@@ -16,11 +16,11 @@ $app->options('/{routes:.+}', function ($request, $response) {
 /**
  * Authentication
  */
-$app->group('/api', function () use ($container) {
-    $this->post('/register', 'AuthController:register')->setName('register');
-    $this->post('/login', 'AuthController:login')->setName('login');
-    $this->post('/auth/refresh', 'AuthController:refresh')->setName('jwt.refresh');
-    $this->get('/users/me', 'AuthController:me')
-        ->add(new AuthMiddleware($container))
-        ->setName('users.me');
-});
+$app->post('/register', 'AuthController:register')->setName('register');
+$app->post('/login', 'AuthController:login')->setName('login');
+$app->post('/auth/refresh', 'AuthController:refresh')->setName('jwt.refresh');
+$app->get('/users/me', 'AuthController:me')
+    ->add(new AuthMiddleware($container))
+    ->setName('users.me');
+
+$app->post('/rooms/{id}/accounts', 'RoomAccountController:post')->setName('post_room_account');
