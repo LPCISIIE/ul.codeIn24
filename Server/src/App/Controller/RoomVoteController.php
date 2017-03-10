@@ -11,6 +11,17 @@ use Respect\Validation\Validator as V;
 
 class RoomVoteController extends Controller
 {
+    public function cget(Request $request, Response $response, $id)
+    {
+        $room = Room::with('votes')->find($id);
+
+        if (null === $room) {
+            throw $this->notFoundException($request, $response);
+        }
+
+        return $this->ok($response, $room->votes);
+    }
+
     public function post(Request $request, Response $response, $id)
     {
         $room = Room::find($id);
