@@ -17,7 +17,7 @@ class Account extends Model
 
     public function rooms()
     {
-        return $this->belongsToMany('App\Model\Room')->withPivot('dj');
+        return $this->belongsToMany('App\Model\Room')->withPivot('dj')->withTimestamps();
     }
 
     public function roomMusic()
