@@ -16,6 +16,16 @@ class Room extends Model
         'idMusic'
     ];
 
+    public function accounts()
+    {
+        return $this->belongsToMany('App\Model\Account')->withPivot('dj');
+    }
+
+    public function accountMusic()
+    {
+        return $this->hasMany('App\Model\AccountMusicRoom');
+    }
+
     public function currentMusic()
     {
 

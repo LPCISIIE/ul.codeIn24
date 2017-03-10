@@ -10,12 +10,15 @@ class Music extends Model
 
     protected $primaryKey = 'id';
 
-    public $timestamps = false;
-
     protected $fillable = [
         'title',
         'artist',
         'length',
         'url'
     ];
+
+    public function accountRoom()
+    {
+        return $this->hasMany('App\Model\AccountMusicRoom');
+    }
 }

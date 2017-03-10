@@ -24,6 +24,7 @@ Manager::schema()->create('room', function (Blueprint $table) {
     $table->increments('id');
     $table->string('name');
     $table->unsignedInteger('music_id');
+    $table->timestamps();
     $table->foreign('music_id')->references('id')->on('music');
 });
 
@@ -36,6 +37,7 @@ Manager::schema()->create('account_room', function (Blueprint $table) {
 });
 
 Manager::schema()->create('account_music_room', function (Blueprint $table) {
+    $table->increments('id');
     $table->unsignedInteger('account_id');
     $table->unsignedInteger('music_id');
     $table->unsignedInteger('room_id');
