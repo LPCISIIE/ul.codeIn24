@@ -7,8 +7,10 @@ import router from 'angular-ui-router'
 import config from 'config'
 import JWTService from 'app/authentication/jwt.service'
 import AuthService from 'app/authentication/authentication.service'
+import SearchService from 'app/jamendo-search/search.service'
 
 import User from 'app/user/user'
+import Search from 'app/jamendo-search/search'
 
 import TopbarDirective from 'app/topbar/topbar.directive'
 import FieldErrorDirective from 'app/common/field-error.directive'
@@ -19,9 +21,14 @@ export default angular.module('app', [resource, router])
   .constant('API', {
     url: 'http://localhost:8080'
   })
+  .constant('JAMENDO_API', {
+    url: 'https://api.jamendo.com/v3.0'
+  })
   .factory('User', User)
+  .factory('Search', Search)
   .service('JWTService', JWTService)
   .service('AuthService', AuthService)
+  .service('SearchService', SearchService)
   .config(config)
   .directive('topbar', TopbarDirective)
   .directive('fieldError', FieldErrorDirective)
