@@ -5,8 +5,8 @@ export default class SearchService {
     this.result = []
   }
 
-  searchTrack () {
-    return this.Search.searchtracks((response) => {
+  searchTrack (keyword) {
+    return this.Search.searchtracks({search: keyword}, (response) => {
       this.result = response
     }, () => {
       this.$state.go('home')

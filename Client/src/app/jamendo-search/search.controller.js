@@ -15,7 +15,7 @@ export default class SearchController {
 
   searchTrack () {
     console.log(this.search_input)
-    let promise = this.SearchService.searchTrack()
+    let promise = this.SearchService.searchTrack(this.search_input)
     promise.then((res) => {
       this.search_result = res
       console.log(this.search_result)
