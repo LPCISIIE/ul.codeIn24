@@ -1,0 +1,22 @@
+<div id="container">
+  <h1 class="ui header">
+    {{ Room.room.name }}
+    <button ng-if="Room.account" ng-click="Room.leave()" class="right floated ui red circular button">Quitter</button>
+  </h1>
+  <h2 class="ui header">Musique en cours</h2>
+  <ul>
+    <li>Titre : {{ Room.room.music.title }}</li>
+    <li>Artiste : {{ Room.room.music.artist }}</li>
+    <li>Genre : {{ Room.room.music.genre }}</li>
+  </ul>
+  <button ng-if="Room.account" ng-click="Room.becomeDJ()" class="large ui teal circular button">Devenir DJ</button>
+  <form ng-if="!Room.account" class="ui form error">
+    <div class="field" field-error="Room.errors.username">
+      <label for="username">Pseudo</label>
+      <input ng-model="Room.newAccount.username" type="text" id="username">
+    </div>
+    <field-errors errors="Room.errors.username"></field-errors>
+
+    <input ng-click="Room.createAccount()" type="submit" class="ui teal circular button">
+  </form>
+</div>

@@ -9,6 +9,8 @@ import JWTService from 'app/authentication/jwt.service'
 import AuthService from 'app/authentication/authentication.service'
 
 import User from 'app/user/user'
+import Room from 'app/rooms/room'
+import RoomAccount from 'app/rooms/room.account'
 
 import TopbarDirective from 'app/topbar/topbar.directive'
 import FieldErrorDirective from 'app/common/field-error.directive'
@@ -17,12 +19,14 @@ import UIDropdownDirective from 'app/common/ui.dropdown.directive'
 
 export default angular.module('app', [resource, router])
   .constant('API', {
-    url: 'http://localhost:8080'
+    url: 'http://localhost/private/Hackathon/Server/public'
   })
   .factory('User', User)
   .service('JWTService', JWTService)
   .service('AuthService', AuthService)
   .config(config)
+  .factory('Room', Room)
+  .factory('RoomAccount', RoomAccount)
   .directive('topbar', TopbarDirective)
   .directive('fieldError', FieldErrorDirective)
   .directive('fieldErrors', FieldErrorsDirective)
