@@ -18,21 +18,21 @@ class MusicController extends Controller
             // Check if the token is valid
             if ($user != null) {
                 $dj = Account::with(['rooms' => function ($query) {
-                    $query->where('id', '=', $request->getParam('room.id') );
+                    $query->where('id', '=', $request->getParam('room_id') );
                 }])->get()->dj;
 
                 if ($user->id == $dj) {
                     $music = new Music;
                     $music->fill([
-                        'title' => $request->getParam('music.title'),
-                        'artist' => $request->getParam('music.artist'),
-                        'genre' => $request->getParam('music.genre'),
-                        'length' => $request->getParam('music.length'),
-                        'url' => $request->getParam('music.url')
+                        'title' => $request->getParam('music_title'),
+                        'artist' => $request->getParam('music_artist'),
+                        'genre' => $request->getParam('music_genre'),
+                        'length' => $request->getParam('music_length'),
+                        'url' => $request->getParam('music_url')
                     ])->save();
 
-                    $room = Room::find($request->getParam('room.id'));
-                    $room->musicId = $music->id;
+                    $room = Room::find($request->getParam('room_id'));
+                    $room->music()->associate($music);
 
                 }
 
