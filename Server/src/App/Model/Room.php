@@ -11,13 +11,9 @@ class Room extends Model
 
     public $timestamps = false;
 
-    protected $fillable = [
-        'name',
-        'idMusic'
-    ];
+    protected $fillable = ['name'];
 
-    public function currentMusic()
-    {
-
-    }
+   public function music() {
+       return $this->belongsTo('App\Model\Music');
+   }
 }
