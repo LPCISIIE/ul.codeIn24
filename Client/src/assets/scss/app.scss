@@ -1,4 +1,55 @@
+$iPhone-width: 375px;
+$break-large: 1200px;
 
 body {
   padding-top: 70px;
 }
+
+.title {
+  font-size: 6.5em;
+  color: white;
+  @media screen and (max-width: $iPhone-width) {
+    font-size: 3em;
+  }
+}
+
+.app-desktop {
+  @media (max-width: $iPhone-width) {
+    visibility:hidden;
+  }
+}
+
+.app-phone {
+  visibility:hidden;
+  @media screen and (max-width: $iPhone-width) {
+    visibility: visible;
+  }
+}
+
+#room-button {
+  margin-top : 100px;
+}
+
+#container {
+  margin-left:138px;
+}
+
+video#bgvid {
+  position: fixed; right: 0; bottom: 0;
+  min-width: 100%; min-height: 100%;
+  width: auto; height: auto; z-index: -100;
+  background-size: cover;
+  filter: blur(10px);
+}
+
+.dark-content {
+  background-color:rgba(0,0,0,0.5);
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  z-index: -99;
+  left:0;
+  top:0;
+}
+
+
