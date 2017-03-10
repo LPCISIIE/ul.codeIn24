@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use App\Exception\AccessDeniedException;
 use App\Model\Account;
 use App\Model\Music;
 use Cartalyst\Sentinel\Checkpoints\ThrottlingException;
@@ -11,17 +12,16 @@ use Respect\Validation\Validator as V;
 
 class MusicController extends Controller
 {
-    public function playMusic(Request $request, Response $response)
+    public function addMusic(Request $request, Response $response)
     {
         if ($request->isPost()) {
-            $user = Account::find($request->token);
-            // Check if the token is valid
-            if ($user != null) {
-                $dj = Account::with(['rooms' => function ($query) {
-                    $query->where('id', '=', $request->getParam('room_id') );
-                }])->get()->dj;
+            $user = Account::with(['rooms' => function($query) use($request) {
+                $query->where('id', $request->getParam('room_id') );
+            }])->where('token', $request->getParam('token'))->first();
 
-                if ($user->id == $dj) {
+            if ($user != null) {
+                $room = Room::find($request->getParam('room_id'));
+                if ($room->dj() == $user) {
                     $music = new Music;
                     $music->fill([
                         'title' => $request->getParam('music_title'),
@@ -30,13 +30,14 @@ class MusicController extends Controller
                         'length' => $request->getParam('music_length'),
                         'url' => $request->getParam('music_url')
                     ])->save();
-
-                    $room = Room::find($request->getParam('room_id'));
                     $room->music()->associate($music);
-
+                    return $response->withStatus('200');
                 }
 
+            } else {
+              return $response->withStatus('401','You are not the dj');
             }
+        }
     }
 
 }
