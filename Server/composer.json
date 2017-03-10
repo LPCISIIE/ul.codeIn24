@@ -1,0 +1,46 @@
+{
+    "name": "awurth/slim-rest-base",
+    "description": "Boilerplate for building a REST API with Slim PHP micro-framework",
+    "keywords": ["slim", "eloquent", "framework", "boilerplate", "skeleton", "rest", "api"],
+    "homepage": "https://github.com/awurth/slim-rest-base",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Alexis Wurth",
+            "email": "alexis.wurth57@gmail.com",
+            "homepage": "https://github.com/awurth"
+        }
+    ],
+    "autoload": {
+        "psr-4": {
+            "App\\": "src/App"
+        }
+    },
+    "require": {
+        "php": ">=7.0.0",
+        "slim/slim": "^3.7",
+        "illuminate/database": "^5.4",
+        "respect/validation": "^1.1",
+        "cartalyst/sentinel": "^2.0",
+        "illuminate/events": "^5.4",
+        "symfony/http-foundation": "^3.2",
+        "awurth/slim-validation-rest": "^1.0",
+        "incenteev/composer-parameter-handler": "^2.1",
+        "symfony/console": "^3.2",
+        "firebase/php-jwt": "^4.0"
+    },
+    "scripts": {
+        "start": "php -S 0.0.0.0:8080 -t public public/index.php",
+        "post-install-cmd": [
+            "Incenteev\\ParameterHandler\\ScriptHandler::buildParameters"
+        ],
+        "post-update-cmd": [
+            "Incenteev\\ParameterHandler\\ScriptHandler::buildParameters"
+        ]
+    },
+    "extra": {
+        "incenteev-parameters": {
+            "file": "bootstrap/parameters.yml"
+        }
+    }
+}
