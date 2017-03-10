@@ -24,23 +24,21 @@ class RoomAccountController extends Controller
 
     public function get(Request $request, Response $response, $id)
     {
-        $room = Room::with('accounts')->find($id);
+        $room = Room::with([
+            'accounts' => function ($query) use ($request) {
+                $query->where('token', $request->getParam('token'));
+            }
+        ])->find($id);
 
         if (null === $room) {
             throw $this->notFoundException($request, $response);
         }
 
-        if (!$request->getParam('token')) {
+        if (!$request->getParam('token') || !$room->accounts->first()) {
             return $response->withStatus(401);
         }
 
-        $account = Account::where('token', $request->getParam('token'))->first();
-
-        if (null === $account) {
-            throw $this->notFoundException($request, $response);
-        }
-
-        return $this->ok($response, $account);
+        return $this->ok($response, $room->accounts->first());
     }
 
     public function post(Request $request, Response $response, $id)
