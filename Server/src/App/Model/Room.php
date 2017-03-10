@@ -9,8 +9,6 @@ class Room extends Model
 
     protected $primaryKey = 'id';
 
-    public $timestamps = false;
-
     protected $fillable = ['name'];
 
     public function accounts()
@@ -27,8 +25,7 @@ class Room extends Model
        return $this->belongsTo('App\Model\Music');
    }
 
-   public function dj() {
+   public function account() {
        return $this->belongsTo('App\Model\Account');
    }
-
 }

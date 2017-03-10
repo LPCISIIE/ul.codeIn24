@@ -23,5 +23,6 @@ $app->get('/users/me', 'AuthController:me')
     ->add(new AuthMiddleware($container))
     ->setName('users.me');
 
+$app->post('/rooms/{id}/musics', 'MusicController:post')->setName('post_room_music');
 $app->post('/rooms/{id}/accounts', 'RoomAccountController:post')->setName('post_room_account');
 $app->put('/rooms/{id}/accounts', 'RoomAccountController:put')->setName('put_room_account');

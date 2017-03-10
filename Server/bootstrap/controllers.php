@@ -7,3 +7,7 @@ $container['AuthController'] = function ($container) {
 $container['RoomAccountController'] = function ($container) {
     return new App\Controller\RoomAccountController($container);
 };
+
+$container['MusicController'] = function ($container) {
+    return new App\Controller\MusicController($container);
+};

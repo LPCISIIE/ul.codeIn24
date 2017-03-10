@@ -2,42 +2,69 @@
 
 namespace App\Controller;
 
-use App\Exception\AccessDeniedException;
 use App\Model\Account;
 use App\Model\Music;
-use Cartalyst\Sentinel\Checkpoints\ThrottlingException;
+use App\Model\Room;
 use Psr\Http\Message\ServerRequestInterface as Request;
 use Psr\Http\Message\ResponseInterface as Response;
 use Respect\Validation\Validator as V;
 
 class MusicController extends Controller
 {
-    public function addMusic(Request $request, Response $response)
+    public function post(Request $request, Response $response, $id)
     {
-        if ($request->isPost()) {
-            $user = Account::with(['rooms' => function($query) use($request) {
-                $query->where('id', $request->getParam('room_id') );
-            }])->where('token', $request->getParam('token'))->first();
-
-            if ($user != null) {
-                $room = Room::find($request->getParam('room_id'));
-                if ($room->dj() == $user) {
-                    $music = new Music;
-                    $music->fill([
-                        'title' => $request->getParam('music_title'),
-                        'artist' => $request->getParam('music_artist'),
-                        'genre' => $request->getParam('music_genre'),
-                        'length' => $request->getParam('music_length'),
-                        'url' => $request->getParam('music_url')
-                    ])->save();
-                    $room->music()->associate($music);
-                    return $response->withStatus('200');
-                }
-
-            } else {
-              return $response->withStatus('401','You are not the dj');
+        $user = Account::with([
+            'rooms' => function ($query) use ($id) {
+                $query->where('id', $id);
             }
+        ])->where('token', $request->getParam('token'))->first();
+
+        if (null === $user) {
+            return $response->withStatus(401);
         }
+
+        $room = Room::with('account')->find($id);
+
+        if (null === $room) {
+            throw $this->notFoundException($request, $response);
+        }
+
+        if ($room->account->id !== $user->id) {
+            throw $this->accessDeniedException('Vous n\êtes pas le DJ !');
+        }
+
+        $this->validator->validate($request, [
+            'title' => [
+                'rules' => V::notBlank(),
+                'messages' => [
+                    'notBlank' => 'Le titre est requis'
+                ]
+            ],
+            'url' => [
+                'rules' => V::notBlank(),
+                'messages' => [
+                    'notBlank' => 'L\'url est requise'
+                ]
+            ]
+        ]);
+
+        if ($this->validator->isValid()) {
+            $music = new Music([
+                'title' => $request->getParam('title'),
+                'artist' => $request->getParam('artist'),
+                'genre' => $request->getParam('genre'),
+                'length' => $request->getParam('length'),
+                'url' => $request->getParam('url')
+            ]);
+            $music->save();
+
+            $room->music()->associate($music);
+            $room->save();
+
+            return $this->ok($response, $music);
+        }
+
+        return $this->validationErrors($response);
     }
 
 }

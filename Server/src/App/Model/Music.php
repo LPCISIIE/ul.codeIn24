@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Music extends Model
 {
-    protected $table = 'Music';
+    protected $table = 'music';
 
     protected $primaryKey = 'id';
 
@@ -17,6 +17,11 @@ class Music extends Model
         'length',
         'url'
     ];
+
+    public function room()
+    {
+        return $this->hasOne('App\Model\Room');
+    }
 
     public function accountRoom()
     {
