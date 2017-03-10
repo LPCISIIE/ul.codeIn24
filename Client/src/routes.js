@@ -13,6 +13,10 @@ export default function route ($stateProvider) {
       controller: HomeController,
       controllerAs: 'Home'
     })
+    .state('rooms', {
+      url: '/rooms',
+      template: require('app/rooms/rooms.html')
+    })
     .state('login', {
       url: '/login',
       template: require('app/authentication/login.html'),
