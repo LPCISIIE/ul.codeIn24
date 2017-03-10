@@ -23,14 +23,18 @@ class MusicController extends Controller
             return $response->withStatus(401);
         }
 
-        $room = Room::with('account')->find($id);
+        $room = Room::with([
+            'accounts' => function ($query) use ($user) {
+                $query->where('id', $user->id);
+            }
+        ])->find($id);
 
         if (null === $room) {
             throw $this->notFoundException($request, $response);
         }
 
-        if ($room->account->id !== $user->id) {
-            throw $this->accessDeniedException('Vous n\êtes pas le DJ !');
+        if (!$room->accounts->first() || !$room->accounts->first()->pivot->dj) {
+            throw $this->accessDeniedException('You must be a DJ !');
         }
 
         $this->validator->validate($request, [

@@ -93,11 +93,9 @@ class RoomAccountController extends Controller
             $account->username = $request->getParam('username');
             $account->save();
 
-            if ($request->getParam('dj')) {
-                $account->rooms()->updateExistingPivot($roomId, [
-                    'dj' => $request->getParam('dj')
-                ]);
-            }
+            $account->rooms()->updateExistingPivot($roomId, [
+                'dj' => $request->getParam('dj') ? true : false
+            ]);
 
             return $this->noContent($response);
         }

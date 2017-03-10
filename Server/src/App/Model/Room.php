@@ -21,11 +21,13 @@ class Room extends Model
         return $this->hasMany('App\Model\AccountMusicRoom');
     }
 
-   public function music() {
+   public function music()
+   {
        return $this->belongsTo('App\Model\Music');
    }
 
-   public function account() {
+   public function account()
+   {
        return $this->belongsTo('App\Model\Account');
    }
 }
