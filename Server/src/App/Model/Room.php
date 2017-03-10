@@ -1,21 +1,23 @@
 <?php
-
 namespace App\Model;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Music extends Model
+class Room extends Model
 {
-    protected $table = 'Music';
+    protected $table = 'room';
 
     protected $primaryKey = 'id';
 
     public $timestamps = false;
 
     protected $fillable = [
-        'title',
-        'artist',
-        'length',
-        'url'
+        'name',
+        'idMusic'
     ];
+
+    public function currentMusic()
+    {
+
+    }
 }
