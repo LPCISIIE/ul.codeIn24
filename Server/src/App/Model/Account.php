@@ -24,4 +24,9 @@ class Account extends Model
     {
         return $this->hasMany('App\Model\AccountMusicRoom');
     }
+
+    public function votes()
+    {
+        return $this->hasMany('App\Model\Vote');
+    }
 }

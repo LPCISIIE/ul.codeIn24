@@ -22,12 +22,21 @@ Manager::schema()->create('music', function (Blueprint $table) {
 
 Manager::schema()->create('room', function (Blueprint $table) {
     $table->increments('id');
-    $table->string('name');
     $table->unsignedInteger('music_id')->nullable();
     $table->unsignedInteger('account_id')->nullable();
+    $table->string('name');
     $table->timestamps();
     $table->foreign('music_id')->references('id')->on('music');
     $table->foreign('account_id')->references('id')->on('account');
+});
+
+Manager::schema()->create('vote', function (Blueprint $table) {
+    $table->increments('id');
+    $table->unsignedInteger('account_id');
+    $table->unsignedInteger('room_id');
+    $table->boolean('value');
+    $table->foreign('account_id')->references('id')->on('account');
+    $table->foreign('room_id')->references('id')->on('room');
 });
 
 Manager::schema()->create('account_room', function (Blueprint $table) {

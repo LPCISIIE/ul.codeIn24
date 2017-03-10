@@ -30,4 +30,9 @@ class Room extends Model
    {
        return $this->belongsTo('App\Model\Account');
    }
+
+   public function votes()
+   {
+       return $this->hasMany('App\Model\Vote');
+   }
 }
