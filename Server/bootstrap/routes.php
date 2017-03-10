@@ -27,6 +27,9 @@ $app->get('/rooms', 'RoomController:cget')->setName('get_rooms');
 $app->get('/rooms/{id}', 'RoomController:get')->setName('get_room');
 
 $app->post('/rooms/{id}/musics', 'MusicController:post')->setName('post_room_music');
+
+$app->get('/rooms/{id}/accounts', 'RoomAccountController:cget')->setName('get_room_accounts');
+$app->get('/rooms/{id}/accounts/me', 'RoomAccountController:get')->setName('get_room_account');
 $app->post('/rooms/{id}/accounts', 'RoomAccountController:post')->setName('post_room_account');
 $app->put('/rooms/{id}/accounts', 'RoomAccountController:put')->setName('put_room_account');
 

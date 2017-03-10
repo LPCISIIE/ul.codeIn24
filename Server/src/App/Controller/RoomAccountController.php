@@ -11,6 +11,38 @@ use Respect\Validation\Validator as V;
 
 class RoomAccountController extends Controller
 {
+    public function cget(Request $request, Response $response, $id)
+    {
+        $room = Room::with('accounts')->find($id);
+
+        if (null === $room) {
+            throw $this->notFoundException($request, $response);
+        }
+
+        return $this->ok($response, $room->accounts);
+    }
+
+    public function get(Request $request, Response $response, $id)
+    {
+        $room = Room::with('accounts')->find($id);
+
+        if (null === $room) {
+            throw $this->notFoundException($request, $response);
+        }
+
+        if (!$request->getParam('token')) {
+            return $response->withStatus(401);
+        }
+
+        $account = Account::where('token', $request->getParam('token'))->first();
+
+        if (null === $account) {
+            throw $this->notFoundException($request, $response);
+        }
+
+        return $this->ok($response, $account);
+    }
+
     public function post(Request $request, Response $response, $id)
     {
         $room = Room::find($id);
