@@ -13,6 +13,7 @@ Manager::schema()->dropIfExists('refresh_token');
 
 Manager::schema()->dropIfExists('account_music_room');
 Manager::schema()->dropIfExists('account_room');
+Manager::schema()->dropIfExists('message');
 Manager::schema()->dropIfExists('vote');
 Manager::schema()->dropIfExists('room');
 Manager::schema()->dropIfExists('music');

@@ -38,5 +38,8 @@ $app->group('/rooms', function () {
         $this->put('/accounts', 'RoomAccountController:put')->setName('put_room_account');
 
         $this->post('/votes', 'RoomVoteController:post')->setName('post_room_vote');
+
+        $this->get('/messages', 'RoomMessageController:cget')->setName('get_room_messages');
+        $this->post('/messages', 'RoomMessageController:post')->setName('post_room_message');
     });
 });

@@ -19,3 +19,7 @@ $container['RoomVoteController'] = function ($container) {
 $container['RoomMusicController'] = function ($container) {
     return new App\Controller\RoomMusicController($container);
 };
+
+$container['RoomMessageController'] = function ($container) {
+    return new App\Controller\RoomMessageController($container);
+};

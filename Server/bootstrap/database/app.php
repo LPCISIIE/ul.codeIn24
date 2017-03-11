@@ -34,6 +34,15 @@ Manager::schema()->create('room', function (Blueprint $table) {
     $table->foreign('account_id')->references('id')->on('account');
 });
 
+Manager::schema()->create('message', function (Blueprint $table) {
+    $table->increments('id');
+    $table->unsignedInteger('account_id');
+    $table->unsignedInteger('room_id');
+    $table->text('body');
+    $table->foreign('account_id')->references('id')->on('account');
+    $table->foreign('room_id')->references('id')->on('room');
+});
+
 Manager::schema()->create('vote', function (Blueprint $table) {
     $table->increments('id');
     $table->unsignedInteger('account_id');

@@ -29,4 +29,9 @@ class Account extends Model
     {
         return $this->hasMany('App\Model\Vote');
     }
+
+    public function messages()
+    {
+        return $this->hasMany('App\Model\Message');
+    }
 }
