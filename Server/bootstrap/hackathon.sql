@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Client :  localhost
--- Généré le :  Sam 11 Mars 2017 à 03:07
+-- Généré le :  Sam 11 Mars 2017 à 09:46
 -- Version du serveur :  5.7.17-0ubuntu0.16.04.1
 -- Version de PHP :  7.0.15-0ubuntu0.16.04.4
 
@@ -80,6 +80,21 @@ CREATE TABLE `activations` (
 -- --------------------------------------------------------
 
 --
+-- Structure de la table `message`
+--
+
+CREATE TABLE `message` (
+  `id` int(10) UNSIGNED NOT NULL,
+  `account_id` int(10) UNSIGNED NOT NULL,
+  `room_id` int(10) UNSIGNED NOT NULL,
+  `body` text NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- --------------------------------------------------------
+
+--
 -- Structure de la table `music`
 --
 
@@ -89,9 +104,9 @@ CREATE TABLE `music` (
   `room_id` int(10) UNSIGNED NOT NULL,
   `title` varchar(255) NOT NULL,
   `artist` varchar(255) DEFAULT NULL,
-  `genre` varchar(255) DEFAULT NULL,
-  `length` varchar(255) DEFAULT NULL,
+  `album` varchar(255) DEFAULT NULL,
   `url` varchar(255) NOT NULL,
+  `album_image` varchar(255) DEFAULT NULL,
   `played_at` datetime DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
@@ -160,8 +175,8 @@ CREATE TABLE `roles` (
 --
 
 INSERT INTO `roles` (`id`, `slug`, `name`, `permissions`, `created_at`, `updated_at`) VALUES
-(1, 'admin', 'Admin', '{"user.create":true,"user.update":true,"user.delete":true}', '2017-03-11 02:06:46', '2017-03-11 02:06:46'),
-(2, 'user', 'User', '{"user.update":true}', '2017-03-11 02:06:46', '2017-03-11 02:06:46');
+(1, 'admin', 'Admin', '{"user.create":true,"user.update":true,"user.delete":true}', '2017-03-11 08:45:56', '2017-03-11 08:45:56'),
+(2, 'user', 'User', '{"user.update":true}', '2017-03-11 08:45:56', '2017-03-11 08:45:56');
 
 -- --------------------------------------------------------
 
@@ -196,10 +211,10 @@ CREATE TABLE `room` (
 --
 
 INSERT INTO `room` (`id`, `music_id`, `account_id`, `name`, `created_at`, `updated_at`) VALUES
-(1, NULL, NULL, 'Room #1', '2017-03-11 02:06:47', '2017-03-11 02:06:47'),
-(2, NULL, NULL, 'Room #2', '2017-03-11 02:06:47', '2017-03-11 02:06:47'),
-(3, NULL, NULL, 'Room #3', '2017-03-11 02:06:47', '2017-03-11 02:06:47'),
-(4, NULL, NULL, 'Room #4', '2017-03-11 02:06:47', '2017-03-11 02:06:47');
+(1, NULL, NULL, 'Room #1', '2017-03-11 08:45:58', '2017-03-11 08:45:58'),
+(2, NULL, NULL, 'Room #2', '2017-03-11 08:45:58', '2017-03-11 08:45:58'),
+(3, NULL, NULL, 'Room #3', '2017-03-11 08:45:58', '2017-03-11 08:45:58'),
+(4, NULL, NULL, 'Room #4', '2017-03-11 08:45:58', '2017-03-11 08:45:58');
 
 -- --------------------------------------------------------
 
@@ -280,6 +295,14 @@ ALTER TABLE `account_room`
 ALTER TABLE `activations`
   ADD PRIMARY KEY (`id`),
   ADD KEY `activations_user_id_foreign` (`user_id`);
+
+--
+-- Index pour la table `message`
+--
+ALTER TABLE `message`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `message_account_id_foreign` (`account_id`),
+  ADD KEY `message_room_id_foreign` (`room_id`);
 
 --
 -- Index pour la table `music`
@@ -376,6 +399,11 @@ ALTER TABLE `account`
 ALTER TABLE `activations`
   MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
 --
+-- AUTO_INCREMENT pour la table `message`
+--
+ALTER TABLE `message`
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
+--
 -- AUTO_INCREMENT pour la table `music`
 --
 ALTER TABLE `music`
@@ -442,6 +470,13 @@ ALTER TABLE `account_room`
 --
 ALTER TABLE `activations`
   ADD CONSTRAINT `activations_user_id_foreign` FOREIGN KEY (`user_id`) REFERENCES `user` (`id`);
+
+--
+-- Contraintes pour la table `message`
+--
+ALTER TABLE `message`
+  ADD CONSTRAINT `message_account_id_foreign` FOREIGN KEY (`account_id`) REFERENCES `account` (`id`),
+  ADD CONSTRAINT `message_room_id_foreign` FOREIGN KEY (`room_id`) REFERENCES `room` (`id`);
 
 --
 -- Contraintes pour la table `music`

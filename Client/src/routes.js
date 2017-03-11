@@ -5,6 +5,7 @@ import HomeController from 'app/home/home.controller'
 import LoginController from 'app/authentication/login.controller'
 import RegisterController from 'app/authentication/register.controller'
 import SearchController from 'app/jamendo-search/search.controller'
+import RoomsController from 'app/rooms/rooms.controller'
 import RoomController from 'app/rooms/room.controller'
 
 export default function route ($stateProvider) {
@@ -37,7 +38,9 @@ export default function route ($stateProvider) {
     })
     .state('rooms', {
       url: '/rooms',
-      template: require('app/rooms/rooms.html')
+      template: require('app/rooms/rooms.html'),
+      controller: RoomsController,
+      controllerAs: 'Rooms'
     })
     .state('room', {
       url: '/rooms/:id',

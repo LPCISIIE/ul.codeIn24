@@ -8,8 +8,8 @@ let spinner = ora('building for production...')
 spinner.start()
 
 rm('-rf', 'dist')
-mkdir('-p', 'dist/bower_components')
-cp('-r', 'bower_components/', '.htaccess', 'dist/')
+mkdir('-p', 'dist/bower_components', 'dist/static')
+cp('-r', 'bower_components/', 'static/', '.htaccess', 'dist/')
 
 webpack(conf, function (err, stats) {
   spinner.stop()
