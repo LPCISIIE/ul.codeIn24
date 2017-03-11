@@ -65,12 +65,6 @@ class RoomAccountController extends Controller
 
         $username = $request->getParam('username');
 
-        $account = Account::where('username', $username)->first();
-
-        if ($username && null !== $account) {
-            $this->validator->addError('username', 'Le pseudo est déjà utilisé');
-        }
-
         if ($this->validator->isValid()) {
             $account = new Account([
                 'username' => $username,
