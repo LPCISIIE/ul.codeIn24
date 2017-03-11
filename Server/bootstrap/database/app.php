@@ -16,9 +16,8 @@ Manager::schema()->create('music', function (Blueprint $table) {
     $table->unsignedInteger('room_id');
     $table->string('title');
     $table->string('artist')->nullable();
-    $table->string('genre')->nullable();
-    $table->string('length')->nullable();
     $table->string('url');
+    $table->string('album_image')->nullable();
     $table->dateTime('played_at')->nullable();
     $table->timestamps();
     $table->foreign('account_id')->references('id')->on('account');
