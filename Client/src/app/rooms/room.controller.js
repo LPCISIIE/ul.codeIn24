@@ -88,7 +88,7 @@ export default class RoomController {
   }
 
   changeMusic (piste) {
-    this.music = {ratio: 0.8, artist: 'kjbkb', album: 'aaa', url: 'http://www.stephaniequinn.com/Music/Allegro%20from%20Duet%20in%20C%20Major.mp3'}
+    this.music = {ratio: 0, artist: 'kjbkb', album: 'aaa', url: 'http://www.stephaniequinn.com/Music/Allegro%20from%20Duet%20in%20C%20Major.mp3'}
   }
 }
 

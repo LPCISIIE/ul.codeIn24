@@ -32,7 +32,7 @@ export default class LecteurController {
 
     self.muter = function () {
       if (elem.musique[0].volume === 0) {
-        elem.musique[0].volume = self.restoreValue / elem.volume.width()
+        elem.musique[0].volume = 1
         self.changeVolume(self.restoreValue / elem.volume.width())
       } else {
         console.log(elem.volumeBar.width())
@@ -45,9 +45,11 @@ export default class LecteurController {
     }
     self.changeVolume = function (ratio) {
       if (ratio === 0) {
-        elem.muteButton.addClass('mute')
+        elem.muteButton.removeClass('volume up icon')
+        elem.muteButton.addClass('volume off icon')
       } else {
-        elem.muteButton.removeClass('mute')
+        elem.muteButton.removeClass('volume off icon')
+        elem.muteButton.addClass('volume up icon')
       }
       elem.volumeBar.css('width', ratio * 100 + '%')
       elem.musique[0].volume = ratio
@@ -100,4 +102,4 @@ export default class LecteurController {
   }
 }
 
-LecteurController.$inject = ['$scope', '$watch']
+LecteurController.$inject = ['$scope']

@@ -1,51 +1,32 @@
-<!--<div id="miniLecteur" ng-controller="Lecteur">
-
-  <audio src="{{url}}.mp3" id="musique"></audio>
-	<div id='containerLecteur'>
-		<span id="currentArtist">{{ artist }}</span><br>
-		<span id="currentAlbum">{{ album }}</span><br>
-		<span id="control">
-			<button id="buttonMute" type="button"></button>
-			<div id="volume">
-				<div id="volumeBar" >
-				</div>
-			</div>
-		</span>
-	</div>
-		<div id="progress">
-			<div id="progressBar" >
-			</div>
-		</div>
-
-</div>
--->
-<div class="player" id="miniLecteur" ng-controller="Lecteur">
-      <div class="cover">
-        <img src="http://i1285.photobucket.com/albums/a583/TheGreatOzz1/Hosted-Images/Noisy-Freeks-Image_zps4kilrxml.png"/>
-      </div>
-
-      <div class="info">
-        <h1>The Noisy Freaks</h1>
-        <h4>I Need You Back</h4>
-
-        <div class="button-items">
-          <audio src="{{url}}.mp3" id="musique" preload="auto" loop="false">
-            <!-- <source src="https://dl.dropbox.com/s/oswkgcw749xc8xs/The-Noisy-Freaks.mp3?dl=1" type="audio/mp3"> -->
-
-          </audio>
-          <!-- <div id="slider"><div id="elapsed"></div></div> -->
-          <div id="progress"><div id="progressBar"></div></div>
-          <!-- <p id="timer">0:00</p> -->
-          <div class="controls">
-              <button ng-click="Room.changeMusic()">Play</button>
-          </div>
-        </div>
-      </div>
+<div class='player' id="miniLecteur" ng-controller="Lecteur">
+  <div class="cover">
+    <img src="http://i1285.photobucket.com/albums/a583/TheGreatOzz1/Hosted-Images/Noisy-Freeks-Image_zps4kilrxml.png" />
   </div>
+  <audio src="{{url}}.mp3" id="musique"></audio>
+  <div class='info' id='containerLecteur'>
+    <h1 id="currentArtist">{{ artist }}</h1>
+    <h4 id="currentTitle">{{album}}</h4>
+    <span id="control">
+      <div id="progress">
+        <div id="progressBar"></div>
+      </div>
+		</span>
+  </div>
+  <button class="ui icon button popopo">
+    <i id="buttonMute" class="volume up icon"></i>
+  </button>
+  <div id="volume">
+    <div id="volumeBar" >
+    </div>
+  </div>
+</div>
+
+  <button ng-click="Room.changeMusic()">Play</button>
+
 <script>
   let width = (window.innerWidth > 0) ? window.innerWidth : screen.width
-  if (width > 736){
-    $('.player').attr('background-image','url("http://i1285.photobucket.com/albums/a583/TheGreatOzz1/Hosted-Images/Noisy-Freeks-Image_zps4kilrxml.png")');
+  if (width > 736) {
+    $('.player').attr('background-image', 'url("http://i1285.photobucket.com/albums/a583/TheGreatOzz1/Hosted-Images/Noisy-Freeks-Image_zps4kilrxml.png")');
   }
   /*var music = document.getElementById("musique");
   var playButton = document.getElementById("play");
