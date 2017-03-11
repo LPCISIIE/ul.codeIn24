@@ -1,13 +1,21 @@
 <div class="ui container" style="padding-bottom:5%">
   <h1 class="ui header">Recherche ! :)</h1>
-  <form class="ui form">
+  <select ng-options="option as option.label for option in option_search"
+  	ng-model="Search.optionList">           
+  </select>
+  <p>{{Search.optionList.label}}</p>
+  <form class="ui form" ng-submit="Search.searchTrack(Search.optionList.value)">
     <div class="field">
       <label for="search">Nom du titre, artiste, etc...</label>
       <input type="text" id="keyword" ng-model="Search.search_input">
     </div>
-    <input type="submit" class="ui teal circular button" value="Rechercher" ng-click="Search.searchTrack()"/>
+    <input type="submit" class="ui teal circular button" value="Rechercher"/>
+    <a class="options-click" ng-click="Search.displayOptions()">Recherche Avancée</a>
   </form>
+  
+  
 </div>
+<script>$('.ui.radio.checkbox').checkbox();</script>
 
 <div class="ui container">
   <div ng-repeat="res in Search.search_result">

@@ -7,18 +7,38 @@ export default class SearchService {
 
   searchTrack (keyword) {
     return this.Search.searchtracks({search: keyword}, (response) => {
-      this.result = response
+      let res = response
+      this.result.push(res.results)
     }, () => {
       this.$state.go('home')
     }).$promise
   }
 
-  searchAlbum () {
-
+  searchByArtist (keyword) {
+    return this.Search.searchbyartists({artist_name: keyword}, (response) => {
+      let res = response
+      this.result.push(res.results)
+    }, () => {
+      this.$state.go('home')
+    }).$promise
   }
 
-  searchArtist () {
+  searchByAlbum (keyword) {
+    return this.Search.searchbyalbums({album_name: keyword}, (response) => {
+      let res = response
+      this.result.push(res.results)
+    }, () => {
+      this.$state.go('home')
+    }).$promise
+  }
 
+  searchByName (keyword) {
+    return this.Search.searchbyname({namesearch: keyword}, (response) => {
+      let res = response
+      this.result.push(res.results)
+    }, () => {
+      this.$state.go('home')
+    }).$promise
   }
 }
 

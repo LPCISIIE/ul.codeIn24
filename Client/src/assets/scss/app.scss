@@ -263,3 +263,23 @@ video#bgvid {
     }
   }
 }
+
+.options-click {
+	cursor: pointer;
+}
+
+.options-search {
+	max-width: 100%;
+	height: auto;
+	margin: 0;
+	position: relative;
+	border: solid 2px #e0e1e2;
+}
+
+.option-show {
+	visibility: default;
+}
+
+.option-hidden {
+	visibility: hidden;
+}
