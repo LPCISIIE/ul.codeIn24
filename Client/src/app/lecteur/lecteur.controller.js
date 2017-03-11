@@ -71,7 +71,7 @@ export default class LecteurController {
     }
 
     self.seek = function (e, objet) {
-      var width = e.pageX - objet.offsetLeft
+      var width = (e.pageX - 137) - objet.offsetLeft
       var ratio = (width / objet.offsetWidth)
       if (ratio < 0) {
         ratio = 0
