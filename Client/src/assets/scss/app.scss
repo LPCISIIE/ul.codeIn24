@@ -114,3 +114,152 @@ video#bgvid {
 }
 
 
+#miniLecteur{
+	width: 100%;
+	position: absolute;
+	position: fixed;
+	bottom: 0;
+	background-color: #505050;
+}
+
+
+
+#progressBar{
+	background-color:#FFA300;
+	height:5px;
+}
+
+#volume{
+	border-radius: 20px;
+	display: inline-block;
+	width: 50vw;
+	background-color: #AAAAAA
+
+}
+#volumeBar{
+	border-radius: 20px;
+	background-color:#FFA300;
+	height:30px;
+}
+
+
+
+
+
+#currentArtist{
+	font-size: 0.8em;
+}
+#currentTitle{
+	font-size: 1.4em;
+	color: #FFA300
+}
+
+
+#buttonPlay{
+	background-size:100%;
+	width: 30px;
+	height: 30px;
+	border: none;
+}
+#picture{
+	padding: 0;
+	margin-bottom: -6px;
+	border:0;
+	display: inline-block;
+	height: 60px;
+	width: 60px;
+}
+
+#containerLecteur{
+	display: inline-block;
+	height: 60px;
+	width: 75%;
+}
+
+#miniLecteur{
+  #buttonMute{
+    background-size: 100%;
+    background-color: green;
+    width: 30px;
+    height: 30px;
+    border: none;
+    &.mute{
+      background-color: red;
+    }
+  }
+}
+
+#miniLecteur{
+	width: 100%;
+	position: absolute;
+	position: fixed;
+	bottom: 0;
+	background-color: #505050;
+}
+
+
+
+#progressBar{
+	background-color:#FFA300;
+	height:5px;
+}
+
+#volume{
+	border-radius: 20px;
+	display: inline-block;
+	width: 50vw;
+	background-color: #AAAAAA
+
+}
+#volumeBar{
+	border-radius: 20px;
+	background-color:#FFA300;
+	height:30px;
+}
+
+
+
+
+
+#currentArtist{
+	font-size: 0.8em;
+}
+#currentTitle{
+	font-size: 1.4em;
+	color: #FFA300
+}
+
+
+#buttonPlay{
+	background-size:100%;
+	width: 30px;
+	height: 30px;
+	border: none;
+}
+#picture{
+	padding: 0;
+	margin-bottom: -6px;
+	border:0;
+	display: inline-block;
+	height: 60px;
+	width: 60px;
+}
+
+#containerLecteur{
+	display: inline-block;
+	height: 60px;
+	width: 75%;
+}
+
+#miniLecteur{
+  #buttonMute{
+    background-size: 100%;
+    background-color: green;
+    width: 30px;
+    height: 30px;
+    border: none;
+    &.mute{
+      background-color: red;
+    }
+  }
+}

@@ -1,0 +1,21 @@
+<div id="miniLecteur" ng-controller="Lecteur">
+
+  <audio src="{{url}}.mp3" id="musique"></audio>
+	<div id='containerLecteur'>
+		<span id="currentArtist">{{ artist }}</span><br>
+		<span id="currentAlbum">{{ album }}</span><br>
+		<span id="control">
+			<button id="buttonMute" type="button"></button>
+			<div id="volume">
+				<div id="volumeBar" >
+				</div>
+			</div>
+		</span>
+	</div>
+		<div id="progress">
+			<div id="progressBar" >
+			</div>
+		</div>
+
+  <button ng-click="refresh({ratio: 0.8, artist:'kjbkb', album:'aaa', url:'http://www.stephaniequinn.com/Music/Allegro%20from%20Duet%20in%20C%20Major.mp3'})">refresh</button>
+</div>

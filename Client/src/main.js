@@ -15,9 +15,12 @@ import Room from 'app/rooms/room'
 import RoomAccount from 'app/rooms/room.account'
 
 import TopbarDirective from 'app/topbar/topbar.directive'
+import LecteurDirective from 'app/lecteur/lecteur.directive'
 import FieldErrorDirective from 'app/common/field-error.directive'
 import FieldErrorsDirective from 'app/common/field-errors.directive'
 import UIDropdownDirective from 'app/common/ui.dropdown.directive'
+
+import LecteurController from 'app/lecteur/lecteur.controller.js'
 
 export default angular.module('app', [resource, router])
   .constant('API', {
@@ -38,6 +41,8 @@ export default angular.module('app', [resource, router])
   .directive('fieldError', FieldErrorDirective)
   .directive('fieldErrors', FieldErrorsDirective)
   .directive('uiDropdown', UIDropdownDirective)
+  .directive('lecteur', LecteurDirective)
+  .controller('Lecteur', LecteurController)
   .run(['$transitions', $transitions => {
     $transitions.onSuccess({}, trans => {
       if (trans.injector().get('JWTService').getAccessToken()) {
