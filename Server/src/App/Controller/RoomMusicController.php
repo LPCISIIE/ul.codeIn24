@@ -34,18 +34,8 @@ class RoomMusicController extends Controller
         }
 
         $this->validator->validate($request, [
-            'title' => [
-                'rules' => V::notBlank(),
-                'messages' => [
-                    'notBlank' => 'Le titre est requis'
-                ]
-            ],
-            'url' => [
-                'rules' => V::notBlank(),
-                'messages' => [
-                    'notBlank' => 'L\'url est requise'
-                ]
-            ]
+            'title' => V::notBlank(),
+            'url' => V::notBlank()
         ]);
 
         if ($this->validator->isValid()) {

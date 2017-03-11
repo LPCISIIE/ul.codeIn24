@@ -60,12 +60,7 @@ class RoomAccountController extends Controller
         }
 
         $this->validator->validate($request, [
-            'username' => [
-                'rules' => V::notBlank(),
-                'messages' => [
-                    'notBlank' => 'Veuillez choisir un pseudo'
-                ]
-            ]
+            'username' => V::notBlank()
         ]);
 
         $username = $request->getParam('username');
@@ -111,12 +106,7 @@ class RoomAccountController extends Controller
         }
 
         $this->validator->validate($request, [
-            'username' => [
-                'rules' => V::notBlank(),
-                'messages' => [
-                    'notBlank' => 'Veuillez choisir un pseudo'
-                ]
-            ]
+            'username' => V::notBlank()
         ]);
 
         if ($this->validator->isValid()) {
