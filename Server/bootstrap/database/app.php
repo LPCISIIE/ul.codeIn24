@@ -39,6 +39,7 @@ Manager::schema()->create('message', function (Blueprint $table) {
     $table->unsignedInteger('account_id');
     $table->unsignedInteger('room_id');
     $table->text('body');
+    $table->timestamps();
     $table->foreign('account_id')->references('id')->on('account');
     $table->foreign('room_id')->references('id')->on('room');
 });
