@@ -1,8 +1,9 @@
 
 export default class LecteurController {
 
-  constructor ($scope) {
+  constructor ($scope, RoomMusic, $stateParams) {
     this.$scope = $scope
+    this.RoomMusic = RoomMusic
     let self = this
     let elem = {
       miniLecteur: $('#miniLecteur'),
@@ -28,6 +29,11 @@ export default class LecteurController {
     })
     elem.muteButton.on('click', function (event) {
       self.muter()
+    })
+    elem.musique.on('ended', function (event) {
+      RoomMusic.next({ room_id: $stateParams.id }, room => {
+        self.refresh({ratio: 0, artist: room.music.artist, album: room.music.album, url: room.music.url, image: room.music.album_image})
+      })
     })
 
     self.muter = function () {
@@ -90,6 +96,7 @@ export default class LecteurController {
       $scope.album = mp3.album
       this.url = mp3.url
       self.play(mp3)
+      $('.cover img').prop('src', mp3.image)
     }
     setInterval(() => {
       self.timer()
@@ -102,4 +109,4 @@ export default class LecteurController {
   }
 }
 
-LecteurController.$inject = ['$scope']
+LecteurController.$inject = ['$scope', 'RoomMusic', '$stateParams']

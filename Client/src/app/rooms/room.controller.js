@@ -68,6 +68,7 @@ export default class RoomController {
           this.room = room
         })
       }
+      this.changeMusic(this.room.music)
     })
   }
 
@@ -99,7 +100,8 @@ export default class RoomController {
   }
 
   changeMusic (piste) {
-    this.music = {ratio: 0, artist: 'kjbkb', album: 'aaa', url: 'http://www.stephaniequinn.com/Music/Allegro%20from%20Duet%20in%20C%20Major.mp3'}
+    console.log(piste)
+    this.music = {ratio: 0.99, artist: piste.artist, album: piste.album, url: piste.url, image: piste.album_image}
   }
 }
 
