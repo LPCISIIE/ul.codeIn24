@@ -1,12 +1,14 @@
 const HTTP = new WeakMap()
 
 export default class RoomController {
-  constructor ($window, $state, $stateParams, Room, RoomAccount, $http, SearchService) {
+  constructor ($window, $interval, $state, $stateParams, Room, RoomAccount, RoomMusic, $http, SearchService) {
     this.store = $window.localStorage
+    this.$interval = $interval
     this.$state = $state
     this.$stateParams = $stateParams
     this.Room = Room
     this.RoomAccount = RoomAccount
+    this.RoomMusic = RoomMusic
     HTTP.set(this, $http)
     this.SearchService = SearchService
     this.search_input = ''
@@ -39,6 +41,16 @@ export default class RoomController {
     }
 
     this.loadRoom()
+
+    let interval = this.$interval(() => {
+      if (!this.room.account_id || !this.room.music_id) {
+        this.RoomMusic.next({ room_id: this.$stateParams.id }, room => {
+          this.room = room
+        })
+      } else {
+        this.$interval.cancel(interval)
+      }
+    }, 2000)
   }
 
   loadRoom () {
@@ -79,4 +91,4 @@ export default class RoomController {
   }
 }
 
-RoomController.$inject = ['$window', '$state', '$stateParams', 'Room', 'RoomAccount', '$http', 'SearchService']
+RoomController.$inject = ['$window', '$interval', '$state', '$stateParams', 'Room', 'RoomAccount', 'RoomMusic', '$http', 'SearchService']
