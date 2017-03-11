@@ -1,23 +1,39 @@
-<div id="container">
-  <h1 class="ui header">
-    {{ Room.room.name }}
-    <button ng-if="Room.account" ng-click="Room.leave()" class="right floated ui red circular button">Quitter</button>
-  </h1>
-  <h2 class="ui header">Musique en cours</h2>
-  <ul>
-    <li>Titre : {{ Room.room.music.title }}</li>
-    <li>Artiste : {{ Room.room.music.artist }}</li>
-    <li>Genre : {{ Room.room.music.genre }}</li>
-  </ul>
-  <h3 ng-if="Room.dj" class="ui header">Vous êtes DJ</h3>
-  <button ng-if="Room.account && !Room.dj" ng-click="Room.becomeDJ()" class="large ui teal circular button">Devenir DJ</button>
-  <form ng-if="!Room.account" class="ui form error">
-    <div class="field" field-error="Room.errors.username">
-      <label for="username">Pseudo</label>
-      <input ng-model="Room.newAccount.username" type="text" id="username">
-    </div>
-    <field-errors errors="Room.errors.username"></field-errors>
+<div class="ui container">
+  <div id='container'>
+    <h1 class="ui header">
+      <br>
+      {{ Room.room.name }}
+      <hr>
+       </h1>
+    <button ng-if="Room.account" ng-click="Room.leave()" class="ui large red right labeled right floated icon button">Leave the room <i class="sign out icon"></i></button>
+    <button ng-if="Room.account && !Room.dj" ng-click="Room.becomeDJ()" class="ui large teal right labeled right floated icon button">Enter in the queue <i class="sign in icon"></i></button>
+    <form ng-if="!Room.account" class="ui form error">
+      <div class="ui fluid action input"  field-error="Room.errors.username">
+        <input  ng-model="Room.newAccount.username" type="text" id="username" placeholder="Enter your pseudo...">
+        <div ng-click="Room.createAccount()" class="ui button"> Validate</div>
+      </div>
+      <field-errors errors="Room.errors.username"></field-errors>
+    </form>
+    <h3 ng-if="Room.dj" class="ui header">You are in the queue to be the next DJ</h3>
+    <b ng-if="Room.account">Log as {{Room.account.username}}</b>
+    <div ng-if="Room.dj">
 
-    <input ng-click="Room.createAccount()" type="submit" class="ui teal circular button">
-  </form>
+
+
+    </div>
+  </div>
+
+
+  <br>
+  <div class="right floated">
+    <h2 class="ui header">Current music : </h2>
+    <ul>
+      <li>Title : {{ Room.room.music.title }}</li>
+      <li>Artist : {{ Room.room.music.artist }}</li>
+      <li>Genre : {{ Room.room.music.genre }}</li>
+      <li>Image : {{ Room.room.music.image }}</li>
+    </ul>
+  </div>
 </div>
+
+<lecteur></lecteur>
