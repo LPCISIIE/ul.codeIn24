@@ -67,8 +67,45 @@ class RoomMusicController extends Controller
         return $this->validationErrors($response);
     }
 
-    public function next(Request $request, Response $response)
+    public function next(Request $request, Response $response, $id)
     {
+        $room = Room::with(['account', 'music'])->find($id);
 
+        if (null === $room) {
+            throw $this->notFoundException($request, $response);
+        }
+
+        $dj = $room->account;
+        $music = $room->music;
+
+        $nextMusic = $dj ? $dj->musics()->where('created_at', '>', $music->created_at)->first() : null;
+
+        if (null !== $nextMusic) {
+            $room->music()->associate($nextMusic);
+            $room->save();
+        } else {
+            if ($dj) {
+                $djWithPivot = $room->accounts()->where('id', $dj->id)->first();
+                $nextDJs = $room->accounts()->wherePivot('dj', true)->wherePivot('created_at', '>', $djWithPivot->pivot->created_at)->get();
+            } else {
+                $nextDJs = $room->accounts()->wherePivot('dj', true)->get();
+            }
+
+            foreach ($nextDJs as $DJ) {
+                $nextMusic = $DJ->musics()->where('created_at', '>', $music->created_at)->first();
+
+                if (null !== $nextMusic) {
+                    $room->account()->associate($DJ);
+                    $room->music()->associate($nextMusic);
+                    $room->save();
+
+                    return $this->ok($response, $room);
+                }
+            }
+
+            return $this->noContent($response);
+        }
+
+        return $this->ok($response, $nextMusic);
     }
 }
