@@ -62,7 +62,7 @@ export default class RoomController {
       room_id: this.$stateParams.id
     }, {
       token: this.token,
-      username: 'username',
+      username: this.account.username,
       dj: true
     }, () => {
       this.dj = true
