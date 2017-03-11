@@ -9,7 +9,7 @@ use Psr\Http\Message\ServerRequestInterface as Request;
 use Psr\Http\Message\ResponseInterface as Response;
 use Respect\Validation\Validator as V;
 
-class MusicController extends Controller
+class RoomMusicController extends Controller
 {
     public function post(Request $request, Response $response, $id)
     {
