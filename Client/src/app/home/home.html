@@ -1,3 +1,20 @@
-<div class="ui container">
-  <h1 class="ui header">Hello World!</h1>
+<div class="ui container center aligned">
+  <div id="container">
+      <p class="title"> El Famoso Player </p>
+      <h2 class="ui inverted header"> Share your favorite musics with people for free !</h2>
+      <h3 class="ui inverted header app-desktop"> Join a party. Be a DJ. Or just listen. Enjoy music together and chat with people from around the world right now</h3>
+      <div class="dark-content"></div>
+        <video autoplay loop muted id="bgvid">
+          <source src="static/video/background.mp4" type="video/mp4">
+        </video>
+
+    <a class="app-phone" ui-sref="rooms">
+      <button class="ui teal right labeled icon button">JOIN A ROOM <i class="caret right icon"></i></button>
+    </a>
+
+    <a class="app-desktop" ui-sref="rooms">
+        <button id="room-button" class="ui teal massive right labeled icon button ">JOIN A ROOM NOW <i class="caret right icon"></i></button>
+    </a>
+
+  </div>
 </div>

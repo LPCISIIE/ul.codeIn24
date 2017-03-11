@@ -16,3 +16,14 @@
   
 </div>
 <script>$('.ui.radio.checkbox').checkbox();</script>
+
+<div class="ui container">
+  <div ng-repeat="res in Search.search_result">
+    <div class="ui four stackable cards">
+      <div class="card" ng-repeat="r in res">
+        <img src="{{r.image}}" class="visible content"/>
+        <a class="hidden content ui block header center aligned">{{r.album_name}}</a>
+      </div>
+    </div>
+  </div>
+</div>

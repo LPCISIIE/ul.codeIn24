@@ -1,23 +1,38 @@
-<nav class="ui top fixed borderless menu">
+<nav class="ui visible left vertical inverted sidebar labeled icon menu app-desktop">
   <a ui-sref="home" class="header item">
-    <i class="game circular inverted icon"></i>
+    <i class="play circular inverted icon"></i>
+    El Famoso Player
+  </a>
+  <a class="item">
+    <i class="home icon"></i>
     Home
   </a>
-  <div ng-hide="user" class="right menu">
-    <div class="item">
-      <a ui-sref="login" class="ui circular button">Sign in</a>
-    </div>
-    <div class="item">
-      <a ui-sref="register" class="ui teal circular button ">Sign up</a>
-    </div>
-  </div>
-  <div ng-show="user" class="right menu">
-    <div class="ui dropdown item" ui-dropdown>
-      {{ user.username }}
-      <i class="dropdown icon"></i>
-      <div class="menu">
-        <a ng-click="logout()" class="item">Logout</a>
+  <a class="item">
+    <i class="block layout icon"></i>
+    Rooms
+  </a>
+  <a class="item">
+    <i class="question icon"></i>
+    About
+
+
+
+    <!--<div ng-hide="user" class="right menu">
+      <div class="item">
+        <a ui-sref="login" class="ui circular button">Sign in</a>
+      </div>
+      <div class="item">
+        <a ui-sref="register" class="ui teal circular button ">Sign up</a>
       </div>
     </div>
-  </div>
+    <div ng-show="user" class="right menu">
+      <div class="ui dropdown item" ui-dropdown>
+        {{ user.username }}
+        <i class="dropdown icon"></i>
+        <div class="menu">
+          <a ng-click="logout()" class="item">Logout</a>
+        </div>
+      </div>
+      </div>-->
+
 </nav>

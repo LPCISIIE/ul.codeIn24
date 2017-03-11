@@ -39,6 +39,7 @@ export default class SearchController {
       promise = this.SearchService.searchTrack(this.search_input)
     }
     promise.then((res) => {
+      this.search_result = []
       this.search_result.push(res.results)
       console.log(this.search_result)
     })
