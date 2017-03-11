@@ -26,7 +26,23 @@ export default class LecteurController {
       let ratio = self.seek(event, this)
       self.changeVolume(ratio)
     })
+    elem.muteButton.on('click', function (event) {
+      self.muter()
+    })
 
+    self.muter = function () {
+      if (elem.musique[0].volume === 0) {
+        elem.musique[0].volume = self.restoreValue / elem.volume.width()
+        self.changeVolume(self.restoreValue / elem.volume.width())
+      } else {
+        console.log(elem.volumeBar.width())
+        self.restoreValue = elem.volumeBar.width()
+        self.changeVolume(0)
+
+        elem.volumeBar.css('width', 0)
+        elem.muteButton.css('backgroundImage', 'url(Ressources/Images/mute.png)')
+      }
+    }
     self.changeVolume = function (ratio) {
       if (ratio === 0) {
         elem.muteButton.addClass('mute')
