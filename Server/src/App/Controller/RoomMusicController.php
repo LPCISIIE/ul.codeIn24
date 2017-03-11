@@ -70,37 +70,36 @@ class RoomMusicController extends Controller
 
         $nextMusic = $dj ? $dj->musics()->where('created_at', '>', $music->created_at)->first() : null;
 
-        if (null !== $nextMusic) {
+        if ($nextMusic) {
             $room->music()->associate($nextMusic);
             $room->save();
-        } else {
-            if ($dj) {
-                $djWithPivot = $room->accounts()->where('id', $dj->id)->first();
-                $nextDJs = $room->accounts()->wherePivot('dj', true)->wherePivot('created_at', '>', $djWithPivot->pivot->created_at)->get();
-            } else {
-                $nextDJs = $room->accounts()->wherePivot('dj', true)->get();
-            }
 
-            foreach ($nextDJs as $DJ) {
-                if($dj) {
-                    $nextMusic = $DJ->musics()->where('created_at', '>', $music->created_at)->first();
-                }
-                else {
-                    $nextMusic = $DJ->musics()->first();
-                }
-
-                if (null !== $nextMusic) {
-                    $room->account()->associate($DJ);
-                    $room->music()->associate($nextMusic);
-                    $room->save();
-
-                    return $this->ok($response, $room);
-                }
-            }
-
-            throw $this->notFoundException($request, $response);
+            return $this->ok($response, $nextMusic);
         }
 
-        return $this->ok($response, $nextMusic);
+        if ($dj) {
+            $djWithPivot = $room->accounts()->where('id', $dj->id)->first();
+            $nextDJs = $room->accounts()->wherePivot('dj', true)->wherePivot('created_at', '>', $djWithPivot->pivot->created_at)->get();
+        } else {
+            $nextDJs = $room->accounts()->wherePivot('dj', true)->get();
+        }
+
+        foreach ($nextDJs as $DJ) {
+            if ($dj) {
+                $nextMusic = $DJ->musics()->where('created_at', '>', $music->created_at)->first();
+            } else {
+                $nextMusic = $DJ->musics()->first();
+            }
+
+            if ($nextMusic) {
+                $room->account()->associate($DJ);
+                $room->music()->associate($nextMusic);
+                $room->save();
+
+                return $this->ok($response, $room);
+            }
+        }
+
+        throw $this->notFoundException($request, $response);
     }
 }
