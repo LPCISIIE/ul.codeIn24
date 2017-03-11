@@ -4,6 +4,7 @@ export default function LecteurDirective () {
     restrict: 'E',
     template: require('./lecteur.directive.html'),
     link: (scope) => {
+      console.log(scope)
     }
   }
 }

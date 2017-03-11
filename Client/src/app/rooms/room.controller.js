@@ -59,6 +59,10 @@ export default class RoomController {
     this.store.removeItem('token')
     this.$state.go('home')
   }
+
+  changeMusic () {
+    this.music = {ratio: 0.8, artist: 'kjbkb', album: 'aaa', url: 'http://www.stephaniequinn.com/Music/Allegro%20from%20Duet%20in%20C%20Major.mp3'}
+  }
 }
 
 RoomController.$inject = ['$window', '$state', '$stateParams', 'Room', 'RoomAccount']
