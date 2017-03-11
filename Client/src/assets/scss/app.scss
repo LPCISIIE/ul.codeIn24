@@ -93,12 +93,39 @@ img.room {
 
 #container {
   margin-left: 138px !important;
+  //margin-right: 300px;
+  @media (max-width: 1000px) {
+    // margin-right: 0;
+  }
+  @media (max-width: $iPhone-width) {
+    margin-left: 0 !important;
+  }
+}
+
+#container-room {
+  margin-left: 138px !important;
   margin-right: 300px;
   @media (max-width: 1000px) {
     margin-right: 0;
   }
   @media (max-width: $iPhone-width) {
     margin-left: 0 !important;
+  }
+}
+
+
+#container-home{
+  margin-left: 138px !important;
+  //margin-right: 300px;
+  @media (max-width: 1000px) {
+   // margin-right: 0;
+  }
+  @media (max-width: $iPhone-width) {
+    margin-left: 0 !important;
+    margin-top: 30%;
+    button {
+      margin-top: 5em;
+    }
   }
 }
 
