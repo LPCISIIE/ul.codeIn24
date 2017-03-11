@@ -51,7 +51,7 @@ export default class LecteurController {
           elem.musique[0].currentTime = currentTime
         }
         elem.musique[0].play()
-      }, 10)
+      }, 1000)
     }
 
     self.seek = function (e, objet) {
