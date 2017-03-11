@@ -26,8 +26,9 @@ export default class RoomController {
   }
 
   sendToPlaylist (r) {
-    $.post(this.API.url + '/rooms/' + this.room.id + '/musics', {token: this.token, title: r.name, artist: r.artist_name, album: r.album_name, url: r.audio, album_image: r.album_image}, function (data) {
+    $.post(this.API.url + '/rooms/' + this.room.id + '/musics', {token: this.token, title: r.name, artist: r.artist_name, album: r.album_name, url: r.audio, album_image: r.album_image}, (data) => {
       console.log(data)
+      this.loadRoom()
     })
   }
 
@@ -46,28 +47,19 @@ export default class RoomController {
     }
 
     this.loadRoom()
-
-    /* let interval = this.$interval(() => {
-      if (!this.room.account_id || !this.room.music_id) {
-        this.RoomMusic.next({ room_id: this.$stateParams.id }, room => {
-          this.room = room
-        })
-      } else {
-        this.$interval.cancel(interval)
-      }
-    }, 2000) */
   }
 
   loadRoom () {
     this.Room.get({ id: this.$stateParams.id }, room => {
-      this.room = room
       if (room.account_id === null || room.music_id === null) {
         this.refresh()
       }
 
       if (room.music) {
-        this.changeMusic(this.room.music)
+        this.changeMusic(room.music)
       }
+
+      this.room = room
     })
   }
 
