@@ -1,4 +1,5 @@
 import 'assets/scss/app.scss'
+import 'assets/scss/chat.scss'
 
 import angular from 'angular'
 import resource from 'angular-resource'
@@ -13,9 +14,11 @@ import User from 'app/user/user'
 import Search from 'app/jamendo-search/search'
 import Room from 'app/rooms/room'
 import RoomAccount from 'app/rooms/room.account'
+import RoomMessage from 'app/rooms/room.message'
 
 import TopbarDirective from 'app/topbar/topbar.directive'
 import LecteurDirective from 'app/lecteur/lecteur.directive'
+import ChatDirective from 'app/rooms/chat.directive'
 import FieldErrorDirective from 'app/common/field-error.directive'
 import FieldErrorsDirective from 'app/common/field-errors.directive'
 import UIDropdownDirective from 'app/common/ui.dropdown.directive'
@@ -37,11 +40,13 @@ export default angular.module('app', [resource, router])
   .config(config)
   .factory('Room', Room)
   .factory('RoomAccount', RoomAccount)
+  .factory('RoomMessage', RoomMessage)
   .directive('topbar', TopbarDirective)
+  .directive('lecteur', LecteurDirective)
+  .directive('chat', ChatDirective)
   .directive('fieldError', FieldErrorDirective)
   .directive('fieldErrors', FieldErrorsDirective)
   .directive('uiDropdown', UIDropdownDirective)
-  .directive('lecteur', LecteurDirective)
   .controller('Lecteur', LecteurController)
   .run(['$transitions', $transitions => {
     $transitions.onSuccess({}, trans => {
