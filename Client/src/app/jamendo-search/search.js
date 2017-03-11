@@ -14,7 +14,7 @@ export default function Search ($resource, JAMENDO_API) {
     },
     searchbyname: {
       method: 'GET',
-      url: JAMENDO_API.url + '/tracks/?client_id=56d30x95&namesearch='
+      url: JAMENDO_API.url + '/tracks/?client_id=56d30c95&namesearch='
     }
   })
 }

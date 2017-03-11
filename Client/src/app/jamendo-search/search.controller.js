@@ -12,13 +12,13 @@ export default class SearchController {
     // on gère les valeurs des groupements de boutons
     $scope.option_search = [{
       value: '1',
-      label: 'nom'
+      label: 'Nom de piste'
     }, {
       value: '2',
-      label: 'nom d\'artiste'
+      label: 'Nom d\'artiste'
     }, {
       value: '3',
-      label: 'nom d\'album'
+      label: 'Nom d\'album'
     }]
   }
 
