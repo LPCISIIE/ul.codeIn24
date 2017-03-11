@@ -18,13 +18,18 @@ class Music extends Model
         'url'
     ];
 
-    public function room()
+    public function account()
     {
-        return $this->hasOne('App\Model\Room');
+        return $this->belongsTo('App\Model\Account');
     }
 
-    public function accountRoom()
+    public function room()
     {
-        return $this->hasMany('App\Model\AccountMusicRoom');
+        return $this->belongsTo('App\Model\Room');
+    }
+
+    public function playingRoom()
+    {
+        return $this->hasOne('App\Model\Room');
     }
 }

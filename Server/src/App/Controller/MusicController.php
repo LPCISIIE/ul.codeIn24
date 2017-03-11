@@ -13,11 +13,7 @@ class MusicController extends Controller
 {
     public function post(Request $request, Response $response, $id)
     {
-        $user = Account::with([
-            'rooms' => function ($query) use ($id) {
-                $query->where('id', $id);
-            }
-        ])->where('token', $request->getParam('token'))->first();
+        $user = Account::where('token', $request->getParam('token'))->first();
 
         if (null === $user) {
             return $response->withStatus(401);
@@ -60,10 +56,10 @@ class MusicController extends Controller
                 'length' => $request->getParam('length'),
                 'url' => $request->getParam('url')
             ]);
-            $music->save();
 
-            $room->music()->associate($music);
-            $room->save();
+            $music->account()->associate($room->accounts->first());
+            $music->room()->associate($room);
+            $music->save();
 
             return $this->ok($response, $music);
         }

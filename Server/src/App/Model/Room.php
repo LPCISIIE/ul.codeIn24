@@ -16,23 +16,23 @@ class Room extends Model
         return $this->belongsToMany('App\Model\Account')->withPivot('dj')->withTimestamps();
     }
 
-    public function accountMusic()
+    public function musics()
     {
-        return $this->hasMany('App\Model\AccountMusicRoom');
+        return $this->hasMany('App\Model\Music');
     }
 
-   public function music()
-   {
-       return $this->belongsTo('App\Model\Music');
-   }
+    public function music()
+    {
+        return $this->belongsTo('App\Model\Music');
+    }
 
-   public function account()
-   {
-       return $this->belongsTo('App\Model\Account');
-   }
+    public function account()
+    {
+        return $this->belongsTo('App\Model\Account');
+    }
 
-   public function votes()
-   {
-       return $this->hasMany('App\Model\Vote');
-   }
+    public function votes()
+    {
+        return $this->hasMany('App\Model\Vote');
+    }
 }

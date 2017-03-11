@@ -12,6 +12,8 @@ Manager::schema()->create('account', function (Blueprint $table) {
 
 Manager::schema()->create('music', function (Blueprint $table) {
     $table->increments('id');
+    $table->unsignedInteger('account_id');
+    $table->unsignedInteger('room_id');
     $table->string('title');
     $table->string('artist')->nullable();
     $table->string('genre')->nullable();
@@ -19,6 +21,7 @@ Manager::schema()->create('music', function (Blueprint $table) {
     $table->string('url');
     $table->dateTime('played_at')->nullable();
     $table->timestamps();
+    $table->foreign('account_id')->references('id')->on('account');
 });
 
 Manager::schema()->create('room', function (Blueprint $table) {
@@ -48,11 +51,4 @@ Manager::schema()->create('account_room', function (Blueprint $table) {
     $table->primary(['account_id', 'room_id']);
     $table->foreign('account_id')->references('id')->on('account');
     $table->foreign('room_id')->references('id')->on('room');
-});
-
-Manager::schema()->create('account_music_room', function (Blueprint $table) {
-    $table->increments('id');
-    $table->unsignedInteger('account_id');
-    $table->unsignedInteger('music_id');
-    $table->unsignedInteger('room_id');
 });
