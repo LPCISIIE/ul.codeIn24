@@ -27,7 +27,7 @@ import LecteurController from 'app/lecteur/lecteur.controller.js'
 
 export default angular.module('app', [resource, router])
   .constant('API', {
-    url: 'http://localhost-hackathon.fr'
+    url: 'http://localhost/Hackathon/Server/public'
   })
   .constant('JAMENDO_API', {
     url: 'https://api.jamendo.com/v3.0'

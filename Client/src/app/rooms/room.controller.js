@@ -1,7 +1,7 @@
 const HTTP = new WeakMap()
 
 export default class RoomController {
-  constructor ($window, $state, $stateParams, Room, RoomAccount, $http, SearchService) {
+  constructor ($window, $state, $stateParams, Room, RoomAccount, $http, SearchService, API) {
     this.store = $window.localStorage
     this.$state = $state
     this.$stateParams = $stateParams
@@ -12,6 +12,7 @@ export default class RoomController {
     this.search_input = ''
     this.search_result = []
     this.init()
+    this.API = API
   }
 
   searchTrack () {
@@ -21,6 +22,12 @@ export default class RoomController {
       this.search_result = []
       this.search_result.push(res.results)
       console.log(this.search_result)
+    })
+  }
+
+  sendToPlaylist (r) {
+    $.post(this.API.url + '/rooms/' + this.room.id + '/musics', {token: this.token, title: r.name, artist: r.artist_name, album: r.album_name, url: r.audio}, function (data) {
+      console.log(data)
     })
   }
 
@@ -79,4 +86,4 @@ export default class RoomController {
   }
 }
 
-RoomController.$inject = ['$window', '$state', '$stateParams', 'Room', 'RoomAccount', '$http', 'SearchService']
+RoomController.$inject = ['$window', '$state', '$stateParams', 'Room', 'RoomAccount', '$http', 'SearchService', 'API']
