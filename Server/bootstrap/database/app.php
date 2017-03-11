@@ -16,9 +16,9 @@ Manager::schema()->create('music', function (Blueprint $table) {
     $table->unsignedInteger('room_id');
     $table->string('title');
     $table->string('artist')->nullable();
-    $table->string('genre')->nullable();
-    $table->string('length')->nullable();
+    $table->string('album')->nullable();
     $table->string('url');
+    $table->string('album_image')->nullable();
     $table->dateTime('played_at')->nullable();
     $table->timestamps();
     $table->foreign('account_id')->references('id')->on('account');
@@ -39,6 +39,7 @@ Manager::schema()->create('message', function (Blueprint $table) {
     $table->unsignedInteger('account_id');
     $table->unsignedInteger('room_id');
     $table->text('body');
+    $table->timestamps();
     $table->foreign('account_id')->references('id')->on('account');
     $table->foreign('room_id')->references('id')->on('room');
 });

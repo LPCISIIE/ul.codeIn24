@@ -1,0 +1,22 @@
+<div class="chat">
+  <h3 class="ui center aligned header">Messages</h3>
+  <div class="ui comments">
+    <div ng-repeat="message in messages" class="comment">
+      <a class="avatar">
+        <img src="http://semantic-ui.com/images/avatar/small/matt.jpg" alt="Avatar">
+      </a>
+      <div class="content">
+        <a class="author">{{ message.account.username }}</a>
+        <div class="metadata">
+          <span class="date">{{ formatDate(message.created_at) | date }}</span>
+        </div>
+        <div class="text">{{ message.body }}</div>
+      </div>
+    </div>
+  </div>
+  <form class="large ui form">
+    <div class="field">
+      <input ng-keyup="onKeyup($event)" ng-model="post.body" type="text" placeholder="Message">
+    </div>
+  </form>
+</div>

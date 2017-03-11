@@ -1,0 +1,38 @@
+.chat {
+  overflow: auto;
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  padding: 0 0 50px 0;
+  width: 300px;
+  background-color: #FFF;
+  border-left: 1px #DDD solid;
+
+  & > .comments {
+    padding: 10px;
+
+    & > .comment {
+      padding: 5px 0;
+    }
+  }
+
+  & > .ui.header {
+    padding: 20px 0;
+    border-bottom: 1px #DDD solid;
+  }
+
+  & > .ui.form {
+    position: fixed;
+    bottom: 0;
+    right: 0;
+    padding: 15px;
+    width: 300px;
+    background-color: #FFF;
+    border-left: 1px #DDD solid;
+
+    & > .field > input {
+      border-width: 2px;
+    }
+  }
+}

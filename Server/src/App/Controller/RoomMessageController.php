@@ -13,7 +13,7 @@ class RoomMessageController extends Controller
 {
     public function cget(Request $request, Response $response, $id)
     {
-        $room = Room::with(['messages'])->find($id);
+        $room = Room::with(['messages.account'])->find($id);
 
         if (null === $room) {
             throw $this->notFoundException($request, $response);
@@ -33,7 +33,7 @@ class RoomMessageController extends Controller
         $account = Account::where('token', $request->getParam('token'))->first();
 
         if (null === $account) {
-            throw $this->notFoundException($request, $response);
+            return $response->withStatus(401);
         }
 
         $this->validator->validate($request, [

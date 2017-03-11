@@ -13,8 +13,8 @@ class Music extends Model
     protected $fillable = [
         'title',
         'artist',
-        'genre',
-        'length',
+        'album',
+        'album_image',
         'url'
     ];
 

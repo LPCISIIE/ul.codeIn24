@@ -42,8 +42,8 @@ class RoomMusicController extends Controller
             $music = new Music([
                 'title' => $request->getParam('title'),
                 'artist' => $request->getParam('artist'),
-                'genre' => $request->getParam('genre'),
-                'length' => $request->getParam('length'),
+                'album' => $request->getParam('album'),
+                'album_image' => $request->getParam('album_image'),
                 'url' => $request->getParam('url')
             ]);
 
