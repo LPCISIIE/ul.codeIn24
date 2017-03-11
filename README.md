@@ -2,10 +2,20 @@ UL-CodeIn24
 ===========
 
 
-Hackathon organised by **Université de Lorraine**.
+Second annual Hackathon organised by **University of Lorraine** which hosted several teams composed of 5 students from Associates Degrees to Masters Degrees.
 
-**Programming contest**
-In a team a 5 people, we had to develop a collaborative web application using some **Music API's**.
+**Subject**
+Create a collaborative music web application using some **Music API's** (eg: an online Jukebox)
+
+----------
+## Built With
+* AngularJS
+* Slim PHP
+* Eloquent ORM
+* Webpack
+* Jamendo Music API
+* Electron
+* Apache Cordova
 
 ----------
 
@@ -13,23 +23,16 @@ In a team a 5 people, we had to develop a collaborative web application using so
 
 Instructions for getting a copy of the project and running it on your local machine.
 
-### Prerequisites
-
-You will need to install some things. Let's see how !
-
-```
-npm
-bower
-composer
-```
-
-### Installing
+### Install the Server application
 
 ```
 cd Server/ 
 composer install
 ```
-Enter your AMP configuration
+Import ```bootstrap/hackathon.sql``` into your DBMS
+
+
+### Install the Client application
 ```
 cd Client/
 bower install
@@ -42,15 +45,17 @@ npm run dev
 ```
 Open a browser on URL http://localhost:4000/
 
-----------
-## Built With
-* AngularJS
-* Slim PHP
-* [angular-webpack-boilerplate](https://github.com/awurth/angular-webpack-boilerplate)
-* [slim-boilerplate from A. Wurth](http://awurth.fr/slim-base/)
-* Jamendo Music API
-* Electron
-* Apache Cordova
+### Build 
+```
+npm run build
+```
+
+### Electron 
+```
+npm run build
+npm run electron
+```
+
 
 ## Contributors
 * **Xavier Chopin** - [Github](https://github.com/xchopin)
