@@ -81,7 +81,6 @@ export default class LecteurController {
       console.log(ratio)
       return ratio
     }
-
     $scope.artist = 1
     $scope.playlist = {a: 'lknkln'}
     $scope.refresh = (mp3) => {
@@ -93,6 +92,11 @@ export default class LecteurController {
     setInterval(() => {
       self.timer()
     }, 200)
+    $scope.$watch('Room.music', (value) => {
+      if (value) {
+        $scope.refresh(value)
+      }
+    })
   }
 }
 
