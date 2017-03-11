@@ -40,7 +40,7 @@
     <div id="result" class="ui container">
       <div ng-repeat="res in Room.search_result">
         <div class="ui three ui link cards">
-         <div class="card" ng-repeat="r in res">
+         <div class="card" ng-repeat="r in res" ng-click="Room.sendToPlaylist(r)">
            <div class="image">
              <img src="{{r.image}}" class="visible content">
            </div>
