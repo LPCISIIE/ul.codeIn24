@@ -67,4 +67,8 @@ class RoomMusicController extends Controller
         return $this->validationErrors($response);
     }
 
+    public function next(Request $request, Response $response)
+    {
+
+    }
 }
