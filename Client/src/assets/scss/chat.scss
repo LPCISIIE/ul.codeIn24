@@ -9,6 +9,10 @@
   background-color: #FFF;
   border-left: 1px #DDD solid;
 
+  @media (max-width: 1000px) {
+    display: none;
+  }
+
   & > .comments {
     padding: 10px;
 
@@ -24,7 +28,7 @@
 
   & > .ui.form {
     position: fixed;
-    bottom: 0;
+    bottom: 124px;
     right: 0;
     padding: 15px;
     width: 300px;

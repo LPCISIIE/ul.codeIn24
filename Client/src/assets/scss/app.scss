@@ -1,7 +1,6 @@
 $iPhone-width: 736px;
 $break-large: 1200px;
 
-
 /**.dark-item {
   position:absolute;
   width:100%;
@@ -9,9 +8,14 @@ $break-large: 1200px;
   background-color: rgba(0,0,0,0.3);
 }*/
 .bg-rooms {
-  position: fixed; right: 0; bottom: 0;
-  min-width: 100%; min-height: 100%;
-  width: auto; height: auto; z-index: -100;
+  position: fixed;
+  right: 0;
+  bottom: 0;
+  min-width: 100%;
+  min-height: 100%;
+  width: auto;
+  height: auto;
+  z-index: -100;
   background-size: cover;
   background-image: url('/static/img/rooms-bg.jpg');
   filter: blur(10px);
@@ -19,7 +23,7 @@ $break-large: 1200px;
 
 .room-line {
 
-  a:nth-child(even){
+  a:nth-child(even) {
     margin-left: 4em;
     @media screen and (max-width: $iPhone-width) {
       margin-left: 0;
@@ -36,7 +40,7 @@ $break-large: 1200px;
 
 .page-title {
   font-size: 6em;
-  color:white;
+  color: white;
   @media screen and (max-width: $iPhone-width) {
     font-size: 3em;
   }
@@ -51,10 +55,10 @@ $break-large: 1200px;
 }
 
 .text-center {
-  display:inline-block;
+  display: inline-block;
   font-size: 6em;
-  color:white;
-  text-align:center;
+  color: white;
+  text-align: center;
 }
 
 img.room {
@@ -67,108 +71,119 @@ img.room {
 }
 
 .room-preview-right {
- float:right;
+  float: right;
 }
 
 .app-desktop {
   @media (max-width: $iPhone-width) {
-    display:none !important;
+    display: none !important;
   }
 }
 
 .app-phone {
-  display:none !important;
+  display: none !important;
   @media screen and (max-width: $iPhone-width) {
     display: inline-block !important;
   }
 }
 
 #room-button {
-  margin-top : 100px;
+  margin-top: 100px;
 }
 
 #container {
-  margin-left:138px !important;
-  @media (max-width: $iPhone-width) {
-    margin-left:0 !important;
+  margin-left: 138px !important;
+  margin-right: 300px;
+  @media (max-width: 1000px) {
+    margin-right: 0;
   }
-
+  @media (max-width: $iPhone-width) {
+    margin-left: 0 !important;
+  }
 }
 
 video#bgvid {
-  position: fixed; right: 0; bottom: 0;
-  min-width: 100%; min-height: 100%;
-  width: auto; height: auto; z-index: -100;
+  position: fixed;
+  right: 0;
+  bottom: 0;
+  min-width: 100%;
+  min-height: 100%;
+  width: auto;
+  height: auto;
+  z-index: -100;
   background-size: cover;
   filter: blur(10px);
 }
 
 .dark-content {
-  background-color:rgba(0,0,0,0.5);
+  background-color: rgba(0, 0, 0, 0.5);
   position: fixed;
   width: 100%;
   height: 100vh;
   z-index: -99;
-  left:0;
-  top:0;
+  left: 0;
+  top: 0;
 }
 
-
-#miniLecteur{
-	width: 100%;
-	position: absolute;
-	position: fixed;
-	bottom: 0;
+#miniLecteur {
+  width: 100%;
+  position: absolute;
+  position: fixed;
+  bottom: 0;
   margin-left: 138px;
   @media (max-width: $iPhone-width) {
-    margin-left:0;
+    margin-left: 0;
   }
-	background-color: #505050;
+  background-color: #505050;
 }
-#progress{
+
+#progress {
   display: inline-block;
   width: 100%;
   margin-bottom: 20px;
 }
-#progressBar{
-	background-color:#D2527F;
-	height:5px;
+
+#progressBar {
+  background-color: #D2527F;
+  height: 5px;
 }
 
-#volume{
+#volume {
   width: 0;
 
   margin-bottom: 20px;
-	border-radius: 20px;
-	display: inline-block;
-	background-color: #AAAAAA;
+  border-radius: 20px;
+  display: inline-block;
+  background-color: #AAAAAA;
   @media (max-width: $iPhone-width) {
-    display:none !important;
+    display: none !important;
   }
 }
-#volumeBar{
-	border-radius: 20px;
-	background-color:#FFA300;
-	height:0px;
+
+#volumeBar {
+  border-radius: 20px;
+  background-color: #FFA300;
+  height: 0px;
 }
 
-#buttonPlay{
-	background-size:100%;
-	width: 30px;
-	height: 30px;
-	border: none;
-}
-#picture{
-	padding: 0;
-	margin-bottom: -6px;
-	border:0;
-	display: inline-block;
-	height: 60px;
-	width: 60px;
+#buttonPlay {
+  background-size: 100%;
+  width: 30px;
+  height: 30px;
+  border: none;
 }
 
-#miniLecteur{
-  #buttonMute{
+#picture {
+  padding: 0;
+  margin-bottom: -6px;
+  border: 0;
+  display: inline-block;
+  height: 60px;
+  width: 60px;
+}
+
+#miniLecteur {
+  #buttonMute {
     margin-top: 80px;
     margin-right: 2px;
     display: inline-block;
@@ -177,45 +192,46 @@ video#bgvid {
     width: 30px;
     height: 30px;
     border: none;
-    &.mute{
+    &.mute {
       background-color: red;
     }
   }
 }
 
-#miniLecteur{
-	width: 100%;
-	position: absolute;
-	position: fixed;
-	bottom: 0;
-	background-color: #505050;
+#miniLecteur {
+  width: 100%;
+  position: absolute;
+  position: fixed;
+  bottom: 0;
+  background-color: #505050;
 }
 
-#buttonPlay{
-	background-size:100%;
-	width: 30px;
-	height: 30px;
-	border: none;
-}
-#picture{
-	padding: 0;
-	margin-bottom: -6px;
-	border:0;
-	display: inline-block;
-	height: 60px;
-	width: 60px;
+#buttonPlay {
+  background-size: 100%;
+  width: 30px;
+  height: 30px;
+  border: none;
 }
 
-#containerLecteur{
+#picture {
+  padding: 0;
+  margin-bottom: -6px;
+  border: 0;
+  display: inline-block;
+  height: 60px;
+  width: 60px;
+}
+
+#containerLecteur {
   position: relative;
-	display: inline-block;
-	height: 60px;
-	width: 75%;
+  display: inline-block;
+  height: 60px;
+  width: 75%;
 }
 
-#miniLecteur{
-  .popopo{
-    background-color: rgba(255,255,255,0);
+#miniLecteur {
+  .popopo {
+    background-color: rgba(255, 255, 255, 0);
     color: white;
     position: absolute;
     margin-top: 80px;
@@ -223,37 +239,34 @@ video#bgvid {
     width: 30px;
     height: 30px;
     border: none;
-    &.mute{
+    &.mute {
       background-color: red;
     }
   }
 }
 
 .options-click {
-	cursor: pointer;
+  cursor: pointer;
 }
 
 .options-search {
-	max-width: 100%;
-	height: auto;
-	margin: 0;
-	position: relative;
-	border: solid 2px #e0e1e2;
+  max-width: 100%;
+  height: auto;
+  margin: 0;
+  position: relative;
+  border: solid 2px #e0e1e2;
 }
 
 .option-show {
-	visibility: default;
+  visibility: default;
 }
 
 .option-hidden {
-	visibility: hidden;
+  visibility: hidden;
 }
-
 
 $player-height: 120px;
 $player-width: 100%;
-
-
 
 @mixin unselectable() {
   -webkit-touch-callout: none;
@@ -263,27 +276,25 @@ $player-width: 100%;
   user-select: none;
 }
 
-
-
 .player {
   position: fixed;
   bottom: 0;
   left: 0;
-  margin-left:137px;
+  margin-left: 137px;
   @media (max-width: $iPhone-width) {
-    margin-left:0 !important;
+    margin-left: 0 !important;
     position: fixed;
   }
   min-height: $player-height;
   width: $player-width;
-  left:0;
-  bottom:0;
+  left: 0;
+  bottom: 0;
   background-color: #1B1C1D;
   @include unselectable();
 
   ul {
-    margin:0;
-    padding:0;
+    margin: 0;
+    padding: 0;
     list-style: none;
     li {
       display: inline-block;
