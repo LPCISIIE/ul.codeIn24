@@ -119,10 +119,12 @@ video#bgvid {
 	position: absolute;
 	position: fixed;
 	bottom: 0;
+  margin-left: 138px;
+  @media (max-width: $iPhone-width) {
+    margin-left:0;
+  }
 	background-color: #505050;
 }
-
-
 
 #progressBar{
 	background-color:#FFA300;
@@ -132,9 +134,10 @@ video#bgvid {
 #volume{
 	border-radius: 20px;
 	display: inline-block;
-	width: 50vw;
-	background-color: #AAAAAA
-
+	background-color: #AAAAAA;
+  @media (max-width: $iPhone-width) {
+    display:none !important;
+  }
 }
 #volumeBar{
 	border-radius: 20px;
