@@ -4,7 +4,7 @@
   </div>
   <audio src="{{url}}.mp3" id="musique"></audio>
   <div class='info' id='containerLecteur'>
-    <h1 id="currentArtist">{{ artist }}</h1>
+    <p id="currentArtist">{{ artist }}</p>
     <h4 id="currentTitle">{{album}}</h4>
     <span id="control">
       <div id="progress">
@@ -12,7 +12,7 @@
       </div>
 		</span>
   </div>
-  <button class="ui icon button popopo">
+  <button class="ui massive icon button popopo">
     <i id="buttonMute" class="volume up icon"></i>
   </button>
   <div id="volume">
@@ -20,8 +20,6 @@
     </div>
   </div>
 </div>
-
-  <button ng-click="Room.changeMusic()">Play</button>
 
 <script>
   let width = (window.innerWidth > 0) ? window.innerWidth : screen.width

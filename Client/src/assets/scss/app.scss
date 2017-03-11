@@ -1,12 +1,30 @@
 $iPhone-width: 736px;
 $break-large: 1200px;
 
-/**.dark-item {
-  position:absolute;
-  width:100%;
-  height:100%;
-  background-color: rgba(0,0,0,0.3);
-}*/
+.search-track {
+  margin-top: 5em;
+  @media screen and (max-width: $iPhone-width) {
+    margin-top: 0;
+  }
+}
+
+#result {
+  margin-top:3em;
+}
+
+.room-title {
+  @media screen and (max-width: $iPhone-width) {
+    background-color: #202c2a;
+    width: 100% !important;
+    padding-bottom: 0.5em !important;
+    p {
+      color: white !important;
+      margin-left: 1em;
+    }
+  }
+}
+
+
 .bg-rooms {
   position: fixed;
   right: 0;
@@ -22,7 +40,10 @@ $break-large: 1200px;
 }
 
 .room-line {
-
+  margin-top: 15%;
+  @media screen and (max-width: $iPhone-width) {
+    margin: 0;
+  }
   a:nth-child(even) {
     margin-left: 4em;
     @media screen and (max-width: $iPhone-width) {
@@ -31,6 +52,13 @@ $break-large: 1200px;
   }
   img {
     margin-bottom: 4em;
+    border: solid 1px black;
+    box-shadow: 3px 3px 3px black;
+    filter: opacity(1);
+    transition: filter 0.5s;
+    &:hover {
+      filter: opacity(0.8);
+    }
 
     @media screen and (max-width: $iPhone-width) {
       margin-bottom: 1em;
@@ -93,10 +121,6 @@ img.room {
 
 #container {
   margin-left: 138px !important;
-  //margin-right: 300px;
-  @media (max-width: 1000px) {
-    // margin-right: 0;
-  }
   @media (max-width: $iPhone-width) {
     margin-left: 0 !important;
   }
@@ -115,11 +139,9 @@ img.room {
 
 
 #container-home{
+  margin-top: 12%;
   margin-left: 138px !important;
-  //margin-right: 300px;
-  @media (max-width: 1000px) {
-   // margin-right: 0;
-  }
+
   @media (max-width: $iPhone-width) {
     margin-left: 0 !important;
     margin-top: 30%;
@@ -154,7 +176,6 @@ video#bgvid {
 
 #miniLecteur {
   width: 100%;
-  position: absolute;
   position: fixed;
   bottom: 0;
   margin-left: 138px;
@@ -211,6 +232,9 @@ video#bgvid {
 
 #miniLecteur {
   #buttonMute {
+    @media (max-width: $iPhone-width) {
+      display: none !important;
+    }
     margin-top: 80px;
     margin-right: 2px;
     display: inline-block;
@@ -227,7 +251,6 @@ video#bgvid {
 
 #miniLecteur {
   width: 100%;
-  position: absolute;
   position: fixed;
   bottom: 0;
   background-color: #505050;
@@ -258,13 +281,13 @@ video#bgvid {
 
 #miniLecteur {
   .popopo {
+    position: fixed;
+    right: 0;
+    bottom: -28px;
     background-color: rgba(255, 255, 255, 0);
     color: white;
-    position: absolute;
-    margin-top: 80px;
+    font-size: 70px;
     background-size: 100%;
-    width: 30px;
-    height: 30px;
     border: none;
     &.mute {
       background-color: red;
@@ -341,14 +364,20 @@ $player-width: 100%;
   }
 }
 
+
 .info {
   padding-top: 10px;
   padding-left: 10px;
   display: inline-block;
   color: white;
   max-width: 60%;
-  h1 {
+  #currentArtist {
     margin-top: 15px;
+    color:white;
+    @media (max-width: $iPhone-width) {
+      margin-top: 0;
+      font-size: 1.5em !important;
+    }
   }
 
   h4 {
