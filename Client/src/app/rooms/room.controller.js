@@ -1,7 +1,7 @@
 const HTTP = new WeakMap()
 
 export default class RoomController {
-  constructor ($window, $state, $stateParams, Room, RoomAccount, $http, SearchService) {
+  constructor ($window, $state, $stateParams, Room, RoomAccount, $http, SearchService, API) {
     this.store = $window.localStorage
     this.$state = $state
     this.$stateParams = $stateParams
@@ -12,6 +12,7 @@ export default class RoomController {
     this.search_input = ''
     this.search_result = []
     this.init()
+    this.API = API
   }
 
   searchTrack () {
@@ -21,6 +22,12 @@ export default class RoomController {
       this.search_result = []
       this.search_result.push(res.results)
       console.log(this.search_result)
+    })
+  }
+
+  sendToPlaylist (r) {
+    $.post(this.API.url + '/rooms/' + this.room.id + '/musics', {token: this.token, title: r.name, artist: r.artist_name, album: r.album_name, url: r.audio}, function (data) {
+      console.log(data)
     })
   }
 
@@ -44,6 +51,12 @@ export default class RoomController {
   loadRoom () {
     this.Room.get({ id: this.$stateParams.id }, room => {
       this.room = room
+      console.log(this.room)
+      if (room.account_id === null || room.music_id === null) {
+        $.post(this.API.url + '/rooms/' + this.room.id + '/musics/next', {token: this.token}, function (data) {
+          console.log(data)
+        })
+      }
     })
   }
 
@@ -74,9 +87,9 @@ export default class RoomController {
     this.$state.go('home')
   }
 
-  changeMusic () {
+  changeMusic (piste) {
     this.music = {ratio: 0.8, artist: 'kjbkb', album: 'aaa', url: 'http://www.stephaniequinn.com/Music/Allegro%20from%20Duet%20in%20C%20Major.mp3'}
   }
 }
 
-RoomController.$inject = ['$window', '$state', '$stateParams', 'Room', 'RoomAccount', '$http', 'SearchService']
+RoomController.$inject = ['$window', '$state', '$stateParams', 'Room', 'RoomAccount', '$http', 'SearchService', 'API']
