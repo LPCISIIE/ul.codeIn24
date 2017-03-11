@@ -32,7 +32,8 @@ export default class LecteurController {
     })
     elem.musique.on('ended', function (event) {
       RoomMusic.next({ room_id: $stateParams.id }, room => {
-        self.refresh({ratio: 0, artist: room.music.artist, album: room.music.album, url: room.music.url, image: room.music.album_image})
+        console.log(self)
+        $scope.refresh({ratio: 0.9, artist: room.artist, album: room.album, url: room.url, image: room.album_image})
       })
     })
 
