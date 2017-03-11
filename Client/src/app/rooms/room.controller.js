@@ -26,7 +26,7 @@ export default class RoomController {
   }
 
   sendToPlaylist (r) {
-    $.post(this.API.url + '/rooms/' + this.room.id + '/musics', {token: this.token, title: r.name, artist: r.artist_name, album: r.album_name, url: r.audio}, function (data) {
+    $.post(this.API.url + '/rooms/' + this.room.id + '/musics', {token: this.token, title: r.name, artist: r.artist_name, album: r.album_name, url: r.audio, album_image: r.album_image}, function (data) {
       console.log(data)
     })
   }
