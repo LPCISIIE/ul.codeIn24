@@ -18,12 +18,10 @@ export default class RoomController {
   }
 
   searchTrack () {
-    console.log(this.search_input)
     let promise = this.SearchService.searchTrack(this.search_input)
     promise.then((res) => {
       this.search_result = []
       this.search_result.push(res.results)
-      console.log(this.search_result)
     })
   }
 
@@ -49,7 +47,7 @@ export default class RoomController {
 
     this.loadRoom()
 
-    let interval = this.$interval(() => {
+    /* let interval = this.$interval(() => {
       if (!this.room.account_id || !this.room.music_id) {
         this.RoomMusic.next({ room_id: this.$stateParams.id }, room => {
           this.room = room
@@ -57,18 +55,19 @@ export default class RoomController {
       } else {
         this.$interval.cancel(interval)
       }
-    }, 2000)
+    }, 2000) */
   }
 
   loadRoom () {
     this.Room.get({ id: this.$stateParams.id }, room => {
       this.room = room
       if (room.account_id === null || room.music_id === null) {
-        this.RoomMusic.next({ room_id: this.$stateParams.id }, room => {
-          this.room = room
-        })
+        this.refresh()
       }
-      this.changeMusic(this.room.music)
+
+      if (room.music) {
+        this.changeMusic(this.room.music)
+      }
     })
   }
 
@@ -100,8 +99,23 @@ export default class RoomController {
   }
 
   changeMusic (piste) {
-    console.log(piste)
-    this.music = {ratio: 0.99, artist: piste.artist, album: piste.album, url: piste.url, image: piste.album_image}
+    // console.log(piste)
+    this.music = {
+      ratio: 0.99,
+      artist: piste.artist,
+      album: piste.album,
+      url: piste.url,
+      image: piste.album_image
+    }
+  }
+
+  refresh () {
+    this.RoomMusic.next({ room_id: this.$stateParams.id }, room => {
+      this.room = room
+      if (room.music) {
+        this.changeMusic(this.room.music)
+      }
+    })
   }
 }
 
