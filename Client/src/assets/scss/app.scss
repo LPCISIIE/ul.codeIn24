@@ -1,8 +1,45 @@
 $iPhone-width: 375px;
 $break-large: 1200px;
 
-body {
-  padding-top: 70px;
+
+/**.dark-item {
+  position:absolute;
+  width:100%;
+  height:100%;
+  background-color: rgba(0,0,0,0.3);
+}*/
+.bg-rooms {
+  position: fixed; right: 0; bottom: 0;
+  min-width: 100%; min-height: 100%;
+  width: auto; height: auto; z-index: -100;
+  background-size: cover;
+  background-image: url('/static/img/rooms-bg.jpg');
+  filter: blur(10px);
+}
+
+.room-line {
+
+  a:nth-child(even){
+    margin-left: 4em;
+    @media screen and (max-width: $iPhone-width) {
+      margin-left: 0;
+    }
+  }
+  img {
+    margin-bottom: 4em;
+
+    @media screen and (max-width: $iPhone-width) {
+      margin-bottom: 1em;
+    }
+  }
+}
+
+.page-title {
+  font-size: 6em;
+  color:white;
+  @media screen and (max-width: $iPhone-width) {
+    font-size: 3em;
+  }
 }
 
 .title {
@@ -13,16 +50,36 @@ body {
   }
 }
 
+.text-center {
+  display:inline-block;
+  font-size: 6em;
+  color:white;
+  text-align:center;
+}
+
+img.room {
+  max-width: 100%;
+  height: auto;
+
+  @media screen and (max-width: $iPhone-width) {
+    min-width: 100%;
+  }
+}
+
+.room-preview-right {
+ float:right;
+}
+
 .app-desktop {
   @media (max-width: $iPhone-width) {
-    visibility:hidden;
+    display:none !important;
   }
 }
 
 .app-phone {
-  visibility:hidden;
+  display:none !important;
   @media screen and (max-width: $iPhone-width) {
-    visibility: visible;
+    display: inline-block !important;
   }
 }
 
@@ -31,7 +88,11 @@ body {
 }
 
 #container {
-  margin-left:138px;
+  margin-left:138px !important;
+  @media (max-width: $iPhone-width) {
+    margin-left:0 !important;
+  }
+
 }
 
 video#bgvid {
@@ -44,9 +105,9 @@ video#bgvid {
 
 .dark-content {
   background-color:rgba(0,0,0,0.5);
-  position: absolute;
+  position: fixed;
   width: 100%;
-  height: 100%;
+  height: 100vh;
   z-index: -99;
   left:0;
   top:0;
