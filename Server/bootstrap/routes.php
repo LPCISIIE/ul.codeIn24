@@ -2,7 +2,7 @@
 
 use App\Service\RestRouter;
 
-use App\Middleware\AuthMiddleware;
+// use App\Middleware\AuthMiddleware;
 
 $router = new RestRouter($container['router'], $config['rest']);
 
@@ -16,21 +16,27 @@ $app->options('/{routes:.+}', function ($request, $response) {
 /**
  * Authentication
  */
-$app->post('/register', 'AuthController:register')->setName('register');
+/* $app->post('/register', 'AuthController:register')->setName('register');
 $app->post('/login', 'AuthController:login')->setName('login');
 $app->post('/auth/refresh', 'AuthController:refresh')->setName('jwt.refresh');
 $app->get('/users/me', 'AuthController:me')
     ->add(new AuthMiddleware($container))
-    ->setName('users.me');
+    ->setName('users.me'); */
 
-$app->get('/rooms', 'RoomController:cget')->setName('get_rooms');
-$app->get('/rooms/{id}', 'RoomController:get')->setName('get_room');
+$app->group('/rooms', function () {
+    $this->get('', 'RoomController:cget')->setName('get_rooms');
 
-$app->post('/rooms/{id}/musics', 'RoomMusicController:post')->setName('post_room_music');
+    $this->group('/{id:[0-9]+}', function () {
+        $this->get('', 'RoomController:get')->setName('get_room');
 
-$app->get('/rooms/{id}/accounts', 'RoomAccountController:cget')->setName('get_room_accounts');
-$app->get('/rooms/{id}/accounts/me', 'RoomAccountController:get')->setName('get_room_account');
-$app->post('/rooms/{id}/accounts', 'RoomAccountController:post')->setName('post_room_account');
-$app->put('/rooms/{id}/accounts', 'RoomAccountController:put')->setName('put_room_account');
+        $this->post('/musics', 'RoomMusicController:post')->setName('post_room_music');
+        $this->post('/musics/next', 'RoomMusicController:next')->setName('next_room_music');
 
-$app->post('/rooms/{id}/votes', 'RoomVoteController:post')->setName('post_room_vote');
+        $this->get('/accounts', 'RoomAccountController:cget')->setName('get_room_accounts');
+        $this->get('/accounts/me', 'RoomAccountController:get')->setName('get_room_account');
+        $this->post('/accounts', 'RoomAccountController:post')->setName('post_room_account');
+        $this->put('/accounts', 'RoomAccountController:put')->setName('put_room_account');
+
+        $this->post('/votes', 'RoomVoteController:post')->setName('post_room_vote');
+    });
+});
