@@ -98,7 +98,7 @@ class RoomMusicController extends Controller
                 }
             }
 
-            return $this->noContent($response);
+            throw $this->notFoundException($request, $response);
         }
 
         return $this->ok($response, $nextMusic);
