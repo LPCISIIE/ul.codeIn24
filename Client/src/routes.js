@@ -34,6 +34,7 @@ export default function route ($stateProvider) {
       template: require('app/jamendo-search/search.html'),
       controller: SearchController,
       controllerAs: 'Search'
+    })
     .state('rooms', {
       url: '/rooms',
       template: require('app/rooms/rooms.html')
