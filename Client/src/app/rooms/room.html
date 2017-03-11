@@ -18,7 +18,25 @@
     <b ng-if="Room.account">Log as {{Room.account.username}}</b>
     <div ng-if="Room.dj">
 
+      <form class="ui form">
+        <div class="field">
+          <div class="ui fluid action input"  field-error="Room.errors.username">
+            <input id="keyword" ng-model="Search.search_input" placeholder="Name of the track...">
+            <div ng-click="Room.searchTrack()" class="ui right teal button right labeled icon"> Search <i class="ui check icon"></i></div>
+          </div>
+        </div>
+      </form>
+    </div>
 
+    <div  class="ui container">
+      <div ng-repeat="res in Room.search_result">
+        <div class="ui four stackable cards">
+          <div class="card" ng-repeat="r in res">
+            <img src="{{r.image}}" class="visible content"/>
+            <a class="hidden content ui block header center aligned">{{r.album_name}}</a>
+          </div>
+        </div>
+      </div>
 
     </div>
   </div>
