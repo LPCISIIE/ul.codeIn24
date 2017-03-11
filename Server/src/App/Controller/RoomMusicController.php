@@ -82,7 +82,12 @@ class RoomMusicController extends Controller
             }
 
             foreach ($nextDJs as $DJ) {
-                $nextMusic = $DJ->musics()->where('created_at', '>', $music->created_at)->first();
+                if($dj) {
+                    $nextMusic = $DJ->musics()->where('created_at', '>', $music->created_at)->first();
+                }
+                else {
+                    $nextMusic = $DJ->musics()->first();
+                }
 
                 if (null !== $nextMusic) {
                     $room->account()->associate($DJ);
