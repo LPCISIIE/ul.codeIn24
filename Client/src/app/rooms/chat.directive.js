@@ -1,5 +1,5 @@
 
-export default function ChatDirective ($stateParams, RoomMessage) {
+export default function ChatDirective ($stateParams, $interval, RoomMessage) {
   return {
     restrict: 'E',
     template: require('app/rooms/chat.directive.html'),
@@ -7,13 +7,17 @@ export default function ChatDirective ($stateParams, RoomMessage) {
       token: '='
     },
     link: (scope, element) => {
+      let loadMessages = () => {
+        RoomMessage.query({ room_id: $stateParams.id }, messages => {
+          scope.messages = messages
+        })
+      }
+
       scope.post = {
         body: ''
       }
 
-      RoomMessage.query({ room_id: $stateParams.id }, messages => {
-        scope.messages = messages
-      })
+      loadMessages()
 
       scope.formatDate = (date) => {
         return new Date(date)
@@ -28,14 +32,14 @@ export default function ChatDirective ($stateParams, RoomMessage) {
             scope.post = {
               body: ''
             }
-            RoomMessage.query({ room_id: $stateParams.id }, messages => {
-              scope.messages = messages
-            })
+            loadMessages()
           })
         }
       }
+
+      // $interval(loadMessages, 2000)
     }
   }
 }
 
-ChatDirective.$inject = ['$stateParams', 'RoomMessage']
+ChatDirective.$inject = ['$stateParams', '$interval', 'RoomMessage']
