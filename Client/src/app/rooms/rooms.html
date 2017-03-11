@@ -10,19 +10,10 @@
       <div class="dark-content"></div>
       <div class="bg-rooms"></div>
     </div>
-        <div class="room-line">
-          <a ui-sref="room({id:1})">
-             <img class="room" src="/static/img/room/1.jpg" alt="room">
-          </a>
-          <a ui-sref="room({id:2})">
-            <img class="room" src="/static/img/room/2.jpg" alt="room">
-          </a>
-          <a ui-sref="room({id:3})">
-            <img class="room" src="/static/img/room/3.jpg" alt="room">
-          </a>
-          <a ui-sref="room({id:4})">
-            <img class="room" src="/static/img/room/4.jpg" alt="room">
-          </a>
-        </div>
+      <div class="room-line">
+        <a ng-repeat="room in Rooms.rooms" ui-sref="room({ id: room.id })">
+           <img class="room" src="/static/img/room/{{ room.id }}.jpg" alt="room">
+        </a>
+      </div>
   </div>
 </div>
