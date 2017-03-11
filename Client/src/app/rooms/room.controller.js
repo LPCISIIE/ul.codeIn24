@@ -1,13 +1,27 @@
+const HTTP = new WeakMap()
 
 export default class RoomController {
-  constructor ($window, $state, $stateParams, Room, RoomAccount) {
+  constructor ($window, $state, $stateParams, Room, RoomAccount, $http, SearchService) {
     this.store = $window.localStorage
     this.$state = $state
     this.$stateParams = $stateParams
     this.Room = Room
     this.RoomAccount = RoomAccount
-
+    HTTP.set(this, $http)
+    this.SearchService = SearchService
+    this.search_input = ''
+    this.search_result = []
     this.init()
+  }
+
+  searchTrack () {
+    console.log(this.search_input)
+    let promise = this.SearchService.searchTrack(this.search_input)
+    promise.then((res) => {
+      this.search_result = []
+      this.search_result.push(res.results)
+      console.log(this.search_result)
+    })
   }
 
   init () {
@@ -61,4 +75,4 @@ export default class RoomController {
   }
 }
 
-RoomController.$inject = ['$window', '$state', '$stateParams', 'Room', 'RoomAccount']
+RoomController.$inject = ['$window', '$state', '$stateParams', 'Room', 'RoomAccount', '$http', 'SearchService']
