@@ -100,4 +100,4 @@ export default class LecteurController {
   }
 }
 
-LecteurController.$inject = ['$scope']
+LecteurController.$inject = ['$scope', '$watch']
