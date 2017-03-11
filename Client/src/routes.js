@@ -4,6 +4,7 @@ import GuestMiddleware from 'middleware/guest.middleware'
 import HomeController from 'app/home/home.controller'
 import LoginController from 'app/authentication/login.controller'
 import RegisterController from 'app/authentication/register.controller'
+import SearchController from 'app/jamendo-search/search.controller'
 import RoomController from 'app/rooms/room.controller'
 
 export default function route ($stateProvider) {
@@ -27,6 +28,12 @@ export default function route ($stateProvider) {
       controller: RegisterController,
       controllerAs: 'Register',
       onEnter: GuestMiddleware
+    })
+    .state('search', {
+      url: '/search',
+      template: require('app/jamendo-search/search.html'),
+      controller: SearchController,
+      controllerAs: 'Search'
     })
     .state('rooms', {
       url: '/rooms',

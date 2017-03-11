@@ -1,0 +1,21 @@
+<div class="ui container" style="padding-bottom:5%">
+  <h1 class="ui header">Recherche ! :)</h1>
+  <form class="ui form">
+    <div class="field">
+      <label for="search">Nom du titre, artiste, etc...</label>
+      <input type="text" id="keyword" ng-model="Search.search_input">
+    </div>
+    <input type="submit" class="ui teal circular button" value="Rechercher" ng-click="Search.searchTrack()"/>
+  </form>
+</div>
+
+<div class="ui container">
+  <div ng-repeat="res in Search.search_result">
+    <div class="ui four stackable cards">
+      <div class="card" ng-repeat="r in res">
+        <img src="{{r.image}}" class="visible content"/>
+        <a class="hidden content ui block header center aligned">{{r.album_name}}</a>
+      </div>
+    </div>
+  </div>
+</div>

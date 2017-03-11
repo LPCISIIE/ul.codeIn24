@@ -7,8 +7,10 @@ import router from 'angular-ui-router'
 import config from 'config'
 import JWTService from 'app/authentication/jwt.service'
 import AuthService from 'app/authentication/authentication.service'
+import SearchService from 'app/jamendo-search/search.service'
 
 import User from 'app/user/user'
+import Search from 'app/jamendo-search/search'
 import Room from 'app/rooms/room'
 import RoomAccount from 'app/rooms/room.account'
 
@@ -21,9 +23,14 @@ export default angular.module('app', [resource, router])
   .constant('API', {
     url: 'http://localhost/private/Hackathon/Server/public'
   })
+  .constant('JAMENDO_API', {
+    url: 'https://api.jamendo.com/v3.0'
+  })
   .factory('User', User)
+  .factory('Search', Search)
   .service('JWTService', JWTService)
   .service('AuthService', AuthService)
+  .service('SearchService', SearchService)
   .config(config)
   .factory('Room', Room)
   .factory('RoomAccount', RoomAccount)
