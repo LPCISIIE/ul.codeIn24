@@ -5,11 +5,11 @@
 
 <div class="ui container">
   <div id="container-room">
-    <h1 class="ui header app-desktop">
+    <h1 class="ui dividing header app-desktop">
       <br>
       {{ Room.room.name }}
-        <b ng-if="Room.account" style="float:right;" class="app-desktop">Log as {{Room.account.username}}</b>
-      <hr>
+      <b ng-if="Room.account" style="float:right;" class="app-desktop">Log as {{Room.account.username}}</b>
+      <button ng-if="!Room.room.account_id || !Room.room.music_id" ng-click="Room.refresh()" class="ui right floated teal button">Start</button>
     </h1>
 
     <button ng-if="Room.account" ng-click="Room.leave()" class="app-phone ui red right labeled icon button">Leave the room <i class="sign out icon"></i></button>
@@ -18,7 +18,7 @@
     <button ng-if="Room.account && !Room.dj" ng-click="Room.becomeDJ()" class="app-desktop ui large teal right labeled right floated icon button">Enter in the queue <i class="sign in icon"></i></button>
     <form ng-if="!Room.account" class="ui form error">
       <div class="ui fluid action input" field-error="Room.errors.username">
-        <input ng-model="Room.newAccount.username" type="text" id="username" placeholder="Enter your pseudo...">
+        <input ng-model="Room.newAccount.username" type="text" id="username" placeholder="Enter your username...">
         <div ng-click="Room.createAccount()" class="ui button"> Validate</div>
       </div>
       <field-errors errors="Room.errors.username"></field-errors>
