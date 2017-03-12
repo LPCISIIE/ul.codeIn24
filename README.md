@@ -5,7 +5,7 @@ UL-CodeIn24
 Second annual Hackathon organised by **University of Lorraine** which hosted several teams composed of 5 students from Associates Degrees to Masters Degrees.
 
 **Subject**
-Create a collaborative music web application using some **Music API's** (eg: an online Jukebox)
+24 hours to create a collaborative music web application using some **Music API's** (eg: an online Jukebox)
 
 ----------
 ## Built With
